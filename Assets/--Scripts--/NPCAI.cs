@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class NPCAI : EntityMovement
 {
     private Vector2[] directions = new Vector2[] { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
     
-    public NavMeshAgent agent;
-    public NavMeshPath path;
+    
     
     //[Header("Dynamic")]
   
     void Awake()
     {
-        GameObject player = GameObject.Find("Player");
-        agent.SetDestination(player.transform.position);
         
     }
 
+    void Start()
+    {
+      
+    }
+
+    void MakePath()
+    {
+        
+    }
     
     
     public override void FixedUpdate()
@@ -34,7 +41,7 @@ public class NPCAI : EntityMovement
         IEnumerator moveSpace = MoveSpace(directionInt);
         StartCoroutine(moveSpace); 
         */
-        print(path);
+        
         
         
         //TurnManager.S.EndTurn(gameObject);

@@ -13,6 +13,8 @@ public class MazeRenderer : MonoBehaviour
     public float CellSize = 1f;
     public NavMeshSurface navSurface;
 
+    public CollectableSpawner collectableSpawner;
+    
     private void Start()
     {
         MazeCell[,] maze = mazeGenerator.GetMaze();
@@ -41,5 +43,6 @@ public class MazeRenderer : MonoBehaviour
         }
         
         navSurface.BuildNavMesh();
+        collectableSpawner.SpawnNewObject();
     }
 }
