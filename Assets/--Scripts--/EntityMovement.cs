@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Math = UnityEngine.Mathf;
@@ -31,19 +32,23 @@ public class EntityMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         if (isPlayer)
         {
             Vector2 move = playerControls.Player.Move.ReadValue<Vector2>();
             Vector2 direction = move;
-            
-            print(direction);
             Vector2Int directionInt = Vector2Int.RoundToInt(direction);
             
             //We need a delay to the movement so we will need to use an IEnum
             IEnumerator moveSpace = MoveSpace(directionInt);
-            StartCoroutine(moveSpace);
+            // Make sure we actually get input!
+            if (direction != Vector2.zero)
+            {
+                StartCoroutine(moveSpace);
+                TurnManager.S.EndTurn(gameObject);
+            }
+            
             
             
         }
@@ -60,8 +65,9 @@ public class EntityMovement : MonoBehaviour
         
     } */
 
-    private IEnumerator MoveSpace(Vector2 direction)
+    public IEnumerator MoveSpace(Vector2 direction)
     {
+        
         
         // We are getting the direction we want to move in + our current position
         float dirX = direction.x;
@@ -69,20 +75,24 @@ public class EntityMovement : MonoBehaviour
         
         
         float myX = transform.position.x;
+        float myY = transform.position.y;
         // We need the Z position but we will be modifying it with the input Y value
         float myZ = transform.position.z;
         
         // We need the direction to raycast
-        Vector3 rayCastDir = new Vector3(dirX, 0, dirY);
+        Vector3 rayCastDir = new Vector3(dirX, myY, dirY);
         
-        Vector3 newPos = new Vector3(myX + dirX, 0, myZ + dirY);
-        Vector3 lookPoint = new Vector3(dirX, 0, dirY);
+        Vector3 newPos = new Vector3(myX + dirX, myY, myZ + dirY);
+        Vector3 lookPoint = new Vector3(dirX, myY, dirY);
         transform.LookAt(newPos);
-        if (!Physics.Raycast(transform.position, rayCastDir, out RaycastHit hit, rayCastDistance))
+        // I hate having to use large trees of if statements but no way around it in an IEnum
+        // We need to check if what we hit isnt a wall, this will come in handy later with things such as
+        // treasures
+        if (!Physics.Raycast(transform.position, rayCastDir, out RaycastHit hit, rayCastDistance) || 
+            !hit.transform.CompareTag("Wall") )
         {
+            Debug.DrawRay(transform.position, rayCastDir, Color.red);
             
-            
-
             if (!delayMovement)
             {
                 delayMovement = true;
@@ -109,8 +119,11 @@ public class EntityMovement : MonoBehaviour
                 float posZ = Mathf.Round(transform.position.z);
             
                 transform.position = new Vector3(posX, transform.position.y,posZ);
-            }
+            } 
             
+
         }
+        
+        
     }
 }

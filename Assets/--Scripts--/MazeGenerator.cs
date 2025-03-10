@@ -21,6 +21,7 @@ using Random = UnityEngine.Random;
 
 public class MazeGenerator : MonoBehaviour
 {
+    public static MazeGenerator S;
     [Range(5, 500)]
     public int mazeWidth = 5, mazeHeight = 5; // Maze dimensions
     public int startX, startY; // The pos our algorithm will start from
@@ -28,9 +29,14 @@ public class MazeGenerator : MonoBehaviour
     
     Vector2Int currentCell; // The maze cell we are currently looking at
 
+    void Awake()
+    {
+        S = this;
+    }
+    
     public MazeCell[,] GetMaze()
     {
-        print("do we call this?");
+        
         maze = new MazeCell[mazeWidth, mazeHeight];
         for (int x = 0; x < mazeHeight; x++)
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class MazeRenderer : MonoBehaviour
@@ -10,6 +11,7 @@ public class MazeRenderer : MonoBehaviour
     // This is the physical size of our maze cells. Getting this wrong will result in overlapping
     // or visibile gaps between each cell
     public float CellSize = 1f;
+    public NavMeshSurface navSurface;
 
     private void Start()
     {
@@ -37,5 +39,7 @@ public class MazeRenderer : MonoBehaviour
                 mazeCell.Init(top, bottom, left, right);
             }
         }
+        
+        navSurface.BuildNavMesh();
     }
 }
