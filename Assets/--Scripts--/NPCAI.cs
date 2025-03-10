@@ -16,6 +16,7 @@ public class NPCAI : EntityMovement
     {
         GameObject player = GameObject.Find("Player");
         agent.SetDestination(player.transform.position);
+        
     }
 
     
@@ -33,8 +34,7 @@ public class NPCAI : EntityMovement
         IEnumerator moveSpace = MoveSpace(directionInt);
         StartCoroutine(moveSpace); 
         */
-        
-       
+        print(path);
         
         
         //TurnManager.S.EndTurn(gameObject);

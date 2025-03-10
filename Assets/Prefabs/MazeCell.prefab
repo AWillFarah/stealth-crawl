@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1093712505901608797}
   - component: {fileID: 4442411380505332345}
   - component: {fileID: 604595614448394207}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TopWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 5242341922484455342}
   - component: {fileID: 1232883845217952484}
   - component: {fileID: 5613685397625677092}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 7477477624537950185}
   - component: {fileID: 5718846599371912860}
   - component: {fileID: 6159928767027804885}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 8948093807475550473}
   - component: {fileID: 8257109021886302974}
   - component: {fileID: 8320433476670580992}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BottomWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -643,7 +643,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
