@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MazeRenderer : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class MazeRenderer : MonoBehaviour
     public float CellSize = 1f;
     public NavMeshSurface navSurface;
 
-    public CollectableSpawner collectableSpawner;
+    [FormerlySerializedAs("collectableSpawner")] public Pathfinder pathfinder;
     
     private void Start()
     {
@@ -43,6 +44,5 @@ public class MazeRenderer : MonoBehaviour
         }
         
         navSurface.BuildNavMesh();
-        collectableSpawner.SpawnNewObject();
     }
 }

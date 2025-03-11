@@ -8,8 +8,8 @@ public class TurnManager : MonoBehaviour
     
     [Header("Dynamic")]
     [Tooltip("The order of turns for the scene")]
-    [SerializeField] private List<GameObject> turnOrder = new List<GameObject>();
-    private int turnOrderIndex = 0; // The current turn
+    public List<GameObject> turnOrder = new List<GameObject>();
+    public int turnOrderIndex = 0; // The current turn
     void Start()
     {
         S = this;
@@ -27,6 +27,8 @@ public class TurnManager : MonoBehaviour
     public void StartTurn(GameObject character)
     {
         character.GetComponent<EntityMovement>().enabled = true;
+        NPCAI n = character.GetComponent<NPCAI>();
+        if (n != null) n.Invoke("StartTurn", 0.02f);
         print("It is " + character.ToString() + "'s turn");
         print("Turn no: " + turnOrderIndex);
     }

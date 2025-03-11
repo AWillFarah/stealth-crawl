@@ -260,3 +260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDelay: 1
   isPlayer: 0
+  pathfinder: {fileID: 0}
+  costToChangePath: 5
+  npcPath: []
