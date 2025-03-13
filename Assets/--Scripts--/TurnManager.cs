@@ -36,7 +36,7 @@ public class TurnManager : MonoBehaviour
     
     public void EndTurn(GameObject character)
     {
-        if(character != turnOrder[turnOrderIndex]) print ("this doesnt seem to work");
+        if(character != turnOrder[turnOrderIndex]) return;
         character.GetComponent<EntityMovement>().enabled = false;
         turnOrderIndex++;
         // We need the -1 because the Count of the turnOrder list

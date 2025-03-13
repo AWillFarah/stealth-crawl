@@ -5,6 +5,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
+
+public enum npcState
+{
+    patrol, chasing, attacking
+}
 public class NPCAI : EntityMovement
 {
     [Header("Inscribed")]
@@ -18,7 +23,7 @@ public class NPCAI : EntityMovement
 
     private float newPathCost;
     private float oldPathCost;
-    
+    public npcState npcState = npcState.patrol;
     
     
     //[Header("Dynamic")]
@@ -30,7 +35,16 @@ public class NPCAI : EntityMovement
 
     public void StartTurn()
     {
-        Pathfinder.S.CreatePath(this);
+        switch (npcState)
+        {
+            case npcState.patrol:
+                Pathfinder.S.CreatePath(this, npcState);
+                break;
+            case npcState.chasing:
+                Pathfinder.S.CreatePath(this, npcState);
+                break;
+        }
+        
         
         
     }
@@ -105,7 +119,6 @@ public class NPCAI : EntityMovement
         Vector2 directionV2 = new Vector2((int)dX, (int)dY).normalized;
         Vector2Int directionInt = Vector2Int.RoundToInt(directionV2);
         Move(directionInt);
-        print(directionInt);
         
     }
     
@@ -114,7 +127,8 @@ public class NPCAI : EntityMovement
         //We need a delay to the movement so we will need to use an IEnum
         IEnumerator moveSpace = MoveSpace(direction);
         StartCoroutine(moveSpace); 
-        TurnManager.S.EndTurn(gameObject);
+        
+        //TurnManager.S.EndTurn(gameObject);
     }
     
     

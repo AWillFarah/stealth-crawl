@@ -49,10 +49,22 @@ public class Pathfinder : MonoBehaviour
     }
 
    
-    public void CreatePath(NPCAI npcObj)
+    public void CreatePath(NPCAI npcObj, npcState currentState)
     {
+        
         activeInstance = npcObj;
         Triangulation = NavMesh.CalculateTriangulation();
+        switch (currentState)
+        {
+            case npcState.patrol:
+                GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Ground");
+                int randomIndex = Random.Range(0, tempArray.Length);
+                targetTransform = tempArray[randomIndex].transform;
+                break;
+            case npcState.chasing:
+                targetTransform = GameObject.Find("Player").transform;
+                break;
+        }
         /*activeInstance = Instantiate(npc,
             Triangulation.vertices[Random.Range(0, Triangulation.vertices.Length)] + Vector3.up * SpawnHeightOffset,
             Quaternion.Euler(90, 0, 0));*/

@@ -22,6 +22,7 @@ public class EntityMovement : MonoBehaviour
     
     private bool delayMovement = false;
     private bool canMove = true;
+    private bool movementComplete = false;
     private InputSystem_Actions playerControls;
     void Awake()
     {
@@ -44,10 +45,10 @@ public class EntityMovement : MonoBehaviour
             //We need a delay to the movement so we will need to use an IEnum
             IEnumerator moveSpace = MoveSpace(directionInt);
             // Make sure we actually get input!
-            if (direction != Vector2.zero)
+            if (direction != Vector2.zero )
             {
                 StartCoroutine(moveSpace);
-                TurnManager.S.EndTurn(gameObject);
+                
             }
             
             
@@ -58,6 +59,7 @@ public class EntityMovement : MonoBehaviour
     public IEnumerator MoveSpace(Vector2 direction)
     {
         canMove = true;
+        
         // We need to let the game know we are occupying a space
         Pathfinder.S.CheckOccupiedPositions();
         
@@ -105,26 +107,61 @@ public class EntityMovement : MonoBehaviour
                     elapsedTime += Time.deltaTime;
                     
                     
-                    // Yield here
                     yield return null;
                 }
-                
+                if (transform.position == newPos)
+                {
+                    print("turn ending");
+                    float posX = Mathf.Round(transform.position.x);
+                    float posZ = Mathf.Round(transform.position.z);
+            
+                    transform.position = new Vector3(posX, 0.5f,posZ);
+                    TurnManager.S.EndTurn(gameObject); 
+                      
+                }
              
                 delayMovement = false;
             }
+            else if (!delayMovement && !canMove)
+            {
+                TurnManager.S.EndTurn(gameObject); 
+            }
+            
 
             if (direction == Vector2.zero)
             {
                 float posX = Mathf.Round(transform.position.x);
                 float posZ = Mathf.Round(transform.position.z);
             
-                transform.position = new Vector3(posX, transform.position.y,posZ);
+                transform.position = new Vector3(posX, 0.5f,posZ);
             }  
             
 
         }
         
-        
-        yield break;
+       
     }
+/*
+    public bool canMove(Vector2 direction)
+    {
+        // We need to let the game know we are occupying a space
+        Pathfinder.S.CheckOccupiedPositions();
+        
+        // We are getting the direction we want to move in + our current position
+        float dirX = direction.x;
+        float dirY = direction.y;
+        
+        
+        float myX = transform.position.x;
+        float myY = transform.position.y;
+        // We need the Z position but we will be modifying it with the input Y value
+        float myZ = transform.position.z;
+        
+        // We need the direction to raycast
+        Vector3 rayCastDir = new Vector3(dirX, myY, dirY);
+        
+        Vector3 newPos = new Vector3(myX + dirX, myY, myZ + dirY);
+        Vector3 lookPoint = new Vector3(dirX, myY, dirY);
+        transform.LookAt(newPos);
+    } */
 }
