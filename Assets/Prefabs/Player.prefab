@@ -146,9 +146,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1133247320805090244}
   - component: {fileID: 8582502103107029075}
+  - component: {fileID: 312133395114840868}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Moving
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,8 +183,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33aaa05fe8347ee448b298200a26fc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayCastDistance: 1
   movementDelay: 0.5
   isPlayer: 1
+--- !u!136 &312133395114840868
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129823993405682169}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6002361210499710275
 GameObject:
   m_ObjectHideFlags: 0

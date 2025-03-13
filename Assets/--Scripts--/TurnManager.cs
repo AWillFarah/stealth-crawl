@@ -9,11 +9,12 @@ public class TurnManager : MonoBehaviour
     [Header("Dynamic")]
     [Tooltip("The order of turns for the scene")]
     public List<GameObject> turnOrder = new List<GameObject>();
+    
     public int turnOrderIndex = 0; // The current turn
     void Start()
     {
         S = this;
-        GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Moving");
+        GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");
         foreach (GameObject temp in tempArray)
         {
             turnOrder.Add(temp);
@@ -30,7 +31,6 @@ public class TurnManager : MonoBehaviour
         NPCAI n = character.GetComponent<NPCAI>();
         if (n != null) n.Invoke("StartTurn", 0.02f);
         print("It is " + character.ToString() + "'s turn");
-        print("Turn no: " + turnOrderIndex);
     }
     
     

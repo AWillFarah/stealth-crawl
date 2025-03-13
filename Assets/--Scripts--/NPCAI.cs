@@ -14,7 +14,7 @@ public class NPCAI : EntityMovement
     
     
     [Header("Dynamic")]
-    [FormerlySerializedAs("pathCheck")] public List<Vector3> npcPath = new List<Vector3>();
+    public List<Vector3> npcPath = new List<Vector3>();
 
     private float newPathCost;
     private float oldPathCost;
@@ -88,7 +88,12 @@ public class NPCAI : EntityMovement
         npcPath.AddRange(path);
         
         // First lets check if path point 0 = our current position
-        if (npcPath[0] == transform.position)
+        Vector3 transRouned = transform.position;
+        transRouned.x = Mathf.RoundToInt(transform.position.x);
+        transRouned.y = 0.5f;
+        transRouned.z = Mathf.RoundToInt(transform.position.z);
+        
+        if (npcPath[0] == transRouned)
         {
             
             npcPath.RemoveAt(0);
@@ -100,6 +105,7 @@ public class NPCAI : EntityMovement
         Vector2 directionV2 = new Vector2((int)dX, (int)dY).normalized;
         Vector2Int directionInt = Vector2Int.RoundToInt(directionV2);
         Move(directionInt);
+        print(directionInt);
         
     }
     

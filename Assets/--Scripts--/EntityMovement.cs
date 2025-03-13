@@ -14,13 +14,14 @@ public class EntityMovement : MonoBehaviour
     
     // How far we want to raycast
     [Header("Inscribed")]
-    private int rayCastDistance = 1;
+    public int rayCastDistance = 1;
     [SerializeField] private float movementDelay = 0.1f;
     [SerializeField] private bool isPlayer;
     
     [Header("Dynamic")]
     
     private bool delayMovement = false;
+    private bool canMove = true;
     private InputSystem_Actions playerControls;
     void Awake()
     {
@@ -53,21 +54,12 @@ public class EntityMovement : MonoBehaviour
             
         }
     }
-    
-    // For player character only
-    /* void OnMove(InputValue value)
-    {
-        Vector2 direction = value.Get<Vector2>();
-        // I need this to always be a whole number (1 or -1)
-        Vector2Int directionInt = Vector2Int.RoundToInt(direction);
-        print(directionInt);
-        MoveSpace(directionInt);
-        
-    } */
 
     public IEnumerator MoveSpace(Vector2 direction)
     {
-        
+        canMove = true;
+        // We need to let the game know we are occupying a space
+        Pathfinder.S.CheckOccupiedPositions();
         
         // We are getting the direction we want to move in + our current position
         float dirX = direction.x;
@@ -86,14 +78,22 @@ public class EntityMovement : MonoBehaviour
         Vector3 lookPoint = new Vector3(dirX, myY, dirY);
         transform.LookAt(newPos);
         // I hate having to use large trees of if statements but no way around it in an IEnum
-        // We need to check if what we hit isnt a wall, this will come in handy later with things such as
-        // treasures
-        if (!Physics.Raycast(transform.position, rayCastDir, out RaycastHit hit, rayCastDistance) || 
-            !hit.transform.CompareTag("Wall") )
+        // We need (the player only)
+        // check if what we hit isnt a wall, this will come in handy later with things such as treasures
+        if (!Physics.Raycast(transform.position, rayCastDir, out RaycastHit hit, rayCastDistance))
         {
+            // If we can't move our turn will just end
+            foreach (Vector3 pos in Pathfinder.S.occupiedPositions)
+            {
+                if (pos == newPos)
+                {
+                    if(!isPlayer) print("cant move");
+                    canMove = false;
+                }
+            }
             Debug.DrawRay(transform.position, rayCastDir, Color.red);
             
-            if (!delayMovement)
+            if (!delayMovement && canMove)
             {
                 delayMovement = true;
                 
@@ -108,7 +108,7 @@ public class EntityMovement : MonoBehaviour
                     // Yield here
                     yield return null;
                 }
-                   
+                
              
                 delayMovement = false;
             }
@@ -119,11 +119,12 @@ public class EntityMovement : MonoBehaviour
                 float posZ = Mathf.Round(transform.position.z);
             
                 transform.position = new Vector3(posX, transform.position.y,posZ);
-            } 
+            }  
             
 
         }
         
         
+        yield break;
     }
 }

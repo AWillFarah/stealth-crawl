@@ -15,12 +15,8 @@ public class Pathfinder : MonoBehaviour
     
     public static Pathfinder S;
     
-    [SerializeField]
-    private NPCAI npc;
-    [FormerlySerializedAs("Player")] [SerializeField]
-    private Transform targetTransform;
-    [FormerlySerializedAs("drawPath")] [FormerlySerializedAs("Path")] [SerializeField]
-    private LineRenderer pathRenderer;
+    [Header("Inscribed")]
+    [SerializeField] private LineRenderer pathRenderer;
     public bool drawPath = false;
     [SerializeField]
     private float PathHeightOffset = 1.25f;
@@ -28,16 +24,28 @@ public class Pathfinder : MonoBehaviour
     private float SpawnHeightOffset = 1.5f;
     [SerializeField]
     private float PathUpdateSpeed = 0.25f;
-
+    
+    [Header("Dynamic")]
+    [SerializeField]
+    private NPCAI npc;
+    [SerializeField] private Transform targetTransform;
     private NPCAI activeInstance;
     private NavMeshTriangulation Triangulation;
     private Coroutine DrawPathCoroutine;
+    
     public List<Vector3> pathPoints = new List<Vector3>();
-
+    public List<Vector3> occupiedPositions = new List<Vector3>();
+    
+    
     private void Awake()
     {
         S = this;
         Triangulation = NavMesh.CalculateTriangulation();
+        GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");
+        foreach (GameObject temp in tempArray)
+        {
+            occupiedPositions.Add(temp.transform.position);
+        }
     }
 
    
@@ -67,7 +75,7 @@ public class Pathfinder : MonoBehaviour
         {
             if (NavMesh.CalculatePath(activeInstance.transform.position, targetTransform.position,  NavMesh.AllAreas, path))
             {
-                //pathRenderer.positionCount = path.corners.Length;
+                pathRenderer.positionCount = path.corners.Length;
                 pathPoints.Clear();
                 for (int i = 0; i < path.corners.Length; i++)
                 {
@@ -79,7 +87,7 @@ public class Pathfinder : MonoBehaviour
                     Vector3 pathRounded = new Vector3(pathX, pathY, pathZ);
                     pathPoints.Add(pathRounded);
                     // Draws line renderer
-                    //if(drawPath) pathRenderer.SetPosition(i, pathRounded + Vector3.up * PathHeightOffset);
+                    if(drawPath) pathRenderer.SetPosition(i, pathRounded + Vector3.up * PathHeightOffset);
                 }
                 if(activeInstance.gameObject == TurnManager.S.turnOrder[TurnManager.S.turnOrderIndex]) activeInstance.ChoosePath(pathPoints);
             }
@@ -89,6 +97,17 @@ public class Pathfinder : MonoBehaviour
             }
 
             yield return Wait;
+        }
+    }
+
+    public void CheckOccupiedPositions()
+    {
+        // Start off by wiping out the previous list
+        occupiedPositions.Clear();
+        GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");
+        foreach (GameObject temp in tempArray)
+        {
+            occupiedPositions.Add(temp.transform.position);
         }
     }
 }
