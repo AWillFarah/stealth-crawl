@@ -17,6 +17,7 @@ public class EntityMovement : MonoBehaviour
     public int rayCastDistance = 1;
     [SerializeField] private float movementDelay = 0.1f;
     [SerializeField] private bool isPlayer;
+   
     
     [Header("Dynamic")]
     
@@ -48,14 +49,13 @@ public class EntityMovement : MonoBehaviour
             if (direction != Vector2.zero )
             {
                 StartCoroutine(moveSpace);
-                
             }
-            
-            
-            
+       
         }
     }
 
+   
+    
     public IEnumerator MoveSpace(Vector2 direction)
     {
         canMove = true;
@@ -85,14 +85,8 @@ public class EntityMovement : MonoBehaviour
         if (!Physics.Raycast(transform.position, rayCastDir, out RaycastHit hit, rayCastDistance))
         {
             // If we can't move our turn will just end
-            foreach (Vector3 pos in Pathfinder.S.occupiedPositions)
-            {
-                if (pos == newPos)
-                {
-                    if(!isPlayer) print("cant move");
-                    canMove = false;
-                }
-            }
+            CheckOccupiedPositions(newPos);
+            
             Debug.DrawRay(transform.position, rayCastDir, Color.red);
             
             if (!delayMovement && canMove)
@@ -111,20 +105,22 @@ public class EntityMovement : MonoBehaviour
                 }
                 if (transform.position == newPos)
                 {
-                    print("turn ending");
-                    float posX = Mathf.Round(transform.position.x);
-                    float posZ = Mathf.Round(transform.position.z);
+                    
+                    //float posX = Mathf.Round(transform.position.x);
+                    //float posZ = Mathf.Round(transform.position.z);
             
-                    transform.position = new Vector3(posX, 0.5f,posZ);
+                    //transform.position = new Vector3(posX, 0.5f,posZ);
+                    print("movement complete");
+                    
                     TurnManager.S.EndTurn(gameObject); 
                       
                 }
              
-                delayMovement = false;
+                delayMovement = false; 
             }
             else if (!delayMovement && !canMove)
             {
-                TurnManager.S.EndTurn(gameObject); 
+                TurnManager.S.EndTurn(gameObject);  
             }
             
 
@@ -141,27 +137,17 @@ public class EntityMovement : MonoBehaviour
         
        
     }
-/*
-    public bool canMove(Vector2 direction)
+
+    void CheckOccupiedPositions(Vector3 newPos)
     {
-        // We need to let the game know we are occupying a space
-        Pathfinder.S.CheckOccupiedPositions();
-        
-        // We are getting the direction we want to move in + our current position
-        float dirX = direction.x;
-        float dirY = direction.y;
-        
-        
-        float myX = transform.position.x;
-        float myY = transform.position.y;
-        // We need the Z position but we will be modifying it with the input Y value
-        float myZ = transform.position.z;
-        
-        // We need the direction to raycast
-        Vector3 rayCastDir = new Vector3(dirX, myY, dirY);
-        
-        Vector3 newPos = new Vector3(myX + dirX, myY, myZ + dirY);
-        Vector3 lookPoint = new Vector3(dirX, myY, dirY);
-        transform.LookAt(newPos);
-    } */
+        foreach (KeyValuePair<GameObject, Vector3> keyPair in Pathfinder.S.GetOccupiedPositions)
+        {
+            if (keyPair.value == newPos)
+            {
+                if(!isPlayer) print("cant move");
+                canMove = false;
+            }
+        }
+    }
+
 }

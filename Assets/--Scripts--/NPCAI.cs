@@ -53,7 +53,7 @@ public class NPCAI : EntityMovement
     public void ChoosePath(List<Vector3> path)
     {
         // We need to calculate if it is worth changing paths
-        if (npcPath != null)
+        if (npcPath.Count > 0)
         {
             foreach (Vector3 node in path)
             {
@@ -99,7 +99,7 @@ public class NPCAI : EntityMovement
             npcPath.AddRange(path);
         } 
         
-        npcPath.AddRange(path);
+        //npcPath.AddRange(path);
         
         // First lets check if path point 0 = our current position
         Vector3 transRouned = transform.position;

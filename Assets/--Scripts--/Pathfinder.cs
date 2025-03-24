@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 public class Pathfinder : MonoBehaviour
@@ -115,11 +116,19 @@ public class Pathfinder : MonoBehaviour
     public void CheckOccupiedPositions()
     {
         // Start off by wiping out the previous list
-        occupiedPositions.Clear();
+        GetOccupiedPositions().Clear();
+        GetOccupiedPositions();
+    }
+    
+    public Dictionary<GameObject, Vector3> GetOccupiedPositions()
+    {
+        
         GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");
         foreach (GameObject temp in tempArray)
         {
-            occupiedPositions.Add(temp.transform.position);
+            GetOccupiedPositions().Add(temp, temp.transform.position);
         }
+
+        return positionsOccupied;
     }
 }
