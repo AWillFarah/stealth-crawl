@@ -35,18 +35,15 @@ public class Pathfinder : MonoBehaviour
     private Coroutine DrawPathCoroutine;
     
     public List<Vector3> pathPoints = new List<Vector3>();
-    public List<Vector3> occupiedPositions = new List<Vector3>();
+    public Dictionary<GameObject, Vector3> GetOccupiedPositions = new Dictionary<GameObject, Vector3>();
     
+    private bool hasChosenPath = false;
     
     private void Awake()
     {
         S = this;
         Triangulation = NavMesh.CalculateTriangulation();
-        GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");
-        foreach (GameObject temp in tempArray)
-        {
-            occupiedPositions.Add(temp.transform.position);
-        }
+        CheckOccupiedPositions();
     }
 
    
@@ -66,24 +63,23 @@ public class Pathfinder : MonoBehaviour
                 targetTransform = GameObject.Find("Player").transform;
                 break;
         }
-        /*activeInstance = Instantiate(npc,
-            Triangulation.vertices[Random.Range(0, Triangulation.vertices.Length)] + Vector3.up * SpawnHeightOffset,
-            Quaternion.Euler(90, 0, 0));*/
-        //activeInstance.pathfinder = this;
+        
         
         if (DrawPathCoroutine != null)
         {
             StopCoroutine(DrawPathCoroutine);
         }
-
+        
         DrawPathCoroutine = StartCoroutine(FindPath());
+        
     }
 
     private IEnumerator FindPath()
     {
+       
         WaitForSeconds Wait = new WaitForSeconds(PathUpdateSpeed);
         NavMeshPath path = new NavMeshPath();
-
+        
         while (activeInstance != null)
         {
             if (NavMesh.CalculatePath(activeInstance.transform.position, targetTransform.position,  NavMesh.AllAreas, path))
@@ -102,33 +98,28 @@ public class Pathfinder : MonoBehaviour
                     // Draws line renderer
                     if(drawPath) pathRenderer.SetPosition(i, pathRounded + Vector3.up * PathHeightOffset);
                 }
-                if(activeInstance.gameObject == TurnManager.S.turnOrder[TurnManager.S.turnOrderIndex]) activeInstance.ChoosePath(pathPoints);
             }
             else
             {
                 Debug.LogError($"Unable to calculate a path on the NavMesh between {targetTransform.position} and {activeInstance.transform.position}!");
             }
 
-            yield return Wait;
+            yield return null;
         }
+       
     }
 
     public void CheckOccupiedPositions()
     {
         // Start off by wiping out the previous list
-        GetOccupiedPositions().Clear();
-        GetOccupiedPositions();
-    }
-    
-    public Dictionary<GameObject, Vector3> GetOccupiedPositions()
-    {
-        
+        GetOccupiedPositions.Clear();
         GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");
         foreach (GameObject temp in tempArray)
         {
-            GetOccupiedPositions().Add(temp, temp.transform.position);
+            GetOccupiedPositions.Add(temp, temp.transform.position);
         }
 
-        return positionsOccupied;
     }
+    
+   
 }

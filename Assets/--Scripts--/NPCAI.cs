@@ -25,6 +25,7 @@ public class NPCAI : EntityMovement
     private float oldPathCost;
     public npcState npcState = npcState.patrol;
     
+    public int numTimesCalled = 0; // we need to ensure Choose path is called only once
     
     //[Header("Dynamic")]
   
@@ -37,21 +38,19 @@ public class NPCAI : EntityMovement
     {
         switch (npcState)
         {
+            // This will be used later when we include attacking
             case npcState.patrol:
-                Pathfinder.S.CreatePath(this, npcState);
-                break;
             case npcState.chasing:
                 Pathfinder.S.CreatePath(this, npcState);
                 break;
         }
-        
-        
-        
+  
     }
 
 
     public void ChoosePath(List<Vector3> path)
     {
+        
         // We need to calculate if it is worth changing paths
         if (npcPath.Count > 0)
         {
@@ -99,7 +98,7 @@ public class NPCAI : EntityMovement
             npcPath.AddRange(path);
         } 
         
-        //npcPath.AddRange(path);
+        
         
         // First lets check if path point 0 = our current position
         Vector3 transRouned = transform.position;
@@ -107,29 +106,23 @@ public class NPCAI : EntityMovement
         transRouned.y = 0.5f;
         transRouned.z = Mathf.RoundToInt(transform.position.z);
         
-        if (npcPath[0] == transRouned)
-        {
-            
-            npcPath.RemoveAt(0);
-        }
+        if (npcPath[0] == transRouned) npcPath.RemoveAt(0);
+        
         Vector3 directionV3 = npcPath[0] - transform.position;
         // We will need to turn this into a vector2
         float dX = directionV3.x;
         float dY = directionV3.z;
         Vector2 directionV2 = new Vector2((int)dX, (int)dY).normalized;
         Vector2Int directionInt = Vector2Int.RoundToInt(directionV2);
-        Move(directionInt);
         
+        
+        IEnumerator moveSpace = MoveSpace(directionInt);
+        StartCoroutine(moveSpace);
+        
+       
     }
     
-    public void Move(Vector2 direction)
-    {
-        //We need a delay to the movement so we will need to use an IEnum
-        IEnumerator moveSpace = MoveSpace(direction);
-        StartCoroutine(moveSpace); 
-        
-        //TurnManager.S.EndTurn(gameObject);
-    }
+   
     
     
 }

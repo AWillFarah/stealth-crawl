@@ -22,8 +22,7 @@ public class EntityMovement : MonoBehaviour
     [Header("Dynamic")]
     
     private bool delayMovement = false;
-    private bool canMove = true;
-    private bool movementComplete = false;
+    private bool validSpace = true;
     private InputSystem_Actions playerControls;
     void Awake()
     {
@@ -45,9 +44,10 @@ public class EntityMovement : MonoBehaviour
             
             //We need a delay to the movement so we will need to use an IEnum
             IEnumerator moveSpace = MoveSpace(directionInt);
-            // Make sure we actually get input!
-            if (direction != Vector2.zero )
+            // Make sure we actually get input! and its our turn!
+            if (direction != Vector2.zero)
             {
+                
                 StartCoroutine(moveSpace);
             }
        
@@ -58,7 +58,7 @@ public class EntityMovement : MonoBehaviour
     
     public IEnumerator MoveSpace(Vector2 direction)
     {
-        canMove = true;
+        validSpace = true;
         
         // We need to let the game know we are occupying a space
         Pathfinder.S.CheckOccupiedPositions();
@@ -89,7 +89,7 @@ public class EntityMovement : MonoBehaviour
             
             Debug.DrawRay(transform.position, rayCastDir, Color.red);
             
-            if (!delayMovement && canMove)
+            if (!delayMovement && validSpace)
             {
                 delayMovement = true;
                 
@@ -106,46 +106,42 @@ public class EntityMovement : MonoBehaviour
                 if (transform.position == newPos)
                 {
                     
-                    //float posX = Mathf.Round(transform.position.x);
-                    //float posZ = Mathf.Round(transform.position.z);
+                    float posX = Mathf.Round(transform.position.x);
+                    float posZ = Mathf.Round(transform.position.z);
             
-                    //transform.position = new Vector3(posX, 0.5f,posZ);
-                    print("movement complete");
+                    transform.position = new Vector3(posX, 0.5f,posZ);
                     
                     TurnManager.S.EndTurn(gameObject); 
-                      
+                    
+                    
                 }
              
                 delayMovement = false; 
             }
-            else if (!delayMovement && !canMove)
+            else
             {
+                
                 TurnManager.S.EndTurn(gameObject);  
             }
             
 
-            if (direction == Vector2.zero)
-            {
-                float posX = Mathf.Round(transform.position.x);
-                float posZ = Mathf.Round(transform.position.z);
-            
-                transform.position = new Vector3(posX, 0.5f,posZ);
-            }  
+           
             
 
         }
         
-       
+        
     }
 
     void CheckOccupiedPositions(Vector3 newPos)
     {
         foreach (KeyValuePair<GameObject, Vector3> keyPair in Pathfinder.S.GetOccupiedPositions)
         {
-            if (keyPair.value == newPos)
+            Pathfinder.S.GetOccupiedPositions.TryGetValue(keyPair.Key, out Vector3 occupiedPos);
+            if (occupiedPos == newPos)
             {
                 if(!isPlayer) print("cant move");
-                canMove = false;
+                validSpace = false;
             }
         }
     }

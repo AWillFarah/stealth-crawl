@@ -9,6 +9,7 @@ public class TurnManager : MonoBehaviour
     [Header("Dynamic")]
     [Tooltip("The order of turns for the scene")]
     public List<GameObject> turnOrder = new List<GameObject>();
+    public bool somethingMoving = false;
     
     public int turnOrderIndex = 0; // The current turn
     void Start()
@@ -29,7 +30,7 @@ public class TurnManager : MonoBehaviour
     {
         character.GetComponent<EntityMovement>().enabled = true;
         NPCAI n = character.GetComponent<NPCAI>();
-        if (n != null) n.Invoke("StartTurn", 0.02f);
+        if (n != null) n.StartTurn();
         print("It is " + character.ToString() + "'s turn");
     }
     
@@ -37,8 +38,11 @@ public class TurnManager : MonoBehaviour
     public void EndTurn(GameObject character)
     {
         if(character != turnOrder[turnOrderIndex]) return;
+            
         print(character + "turn ending");
         character.GetComponent<EntityMovement>().enabled = false;
+        
+        
         turnOrderIndex++;
         // We need the -1 because the Count of the turnOrder list
         // Is always going to be 1 larger than the last index
