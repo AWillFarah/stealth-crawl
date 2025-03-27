@@ -22,6 +22,8 @@ public class TurnManagerNew : MonoBehaviour
         GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");
         foreach (GameObject temp in tempArray)
         {
+            CharacterMovement characterMovement = temp.GetComponent<CharacterMovement>();
+            characterMovement.enabled = false;
             turnOrder.Enqueue(temp.gameObject);
         } 
         
@@ -29,20 +31,18 @@ public class TurnManagerNew : MonoBehaviour
     void StartTurn(GameObject currentTurn)
     {
         print("it is " + currentTurn + "'s turn");
-        NewCharacterMovement newCharacterMovement = currentTurn.GetComponent<NewCharacterMovement>();
-        
-        IEnumerator moveSpace = newCharacterMovement.MoveTowardsTarget(new Vector3(1,0,1));
-        StartCoroutine(moveSpace);
+        currentTurn.GetComponent<CharacterMovement>().enabled = true;
     }
-
- 
-
+    
     public void EndTurn()
     {
+        GameObject character = turnOrder.Peek();
+        // I realllllyyy wanna be sure they're in the right spot because ive been getting some rounding errors
+        character.transform.position = new Vector3(Mathf.RoundToInt(character.transform.position.x), 0.5f, 
+        Mathf.RoundToInt(character.transform.position.z));
+        character.GetComponent<CharacterMovement>().enabled = false;
         turnOrder.Dequeue();
         if (turnOrder.Count <= 0) QueueTurns();
         StartTurn(turnOrder.Peek());
-        
-        
     }
 }

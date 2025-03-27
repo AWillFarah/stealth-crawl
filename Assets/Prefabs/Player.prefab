@@ -145,9 +145,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1133247320805090244}
-  - component: {fileID: 8582502103107029075}
   - component: {fileID: 312133395114840868}
   - component: {fileID: 7965521322757534885}
+  - component: {fileID: 8868887630429311184}
   m_Layer: 6
   m_Name: Player
   m_TagString: Character
@@ -172,21 +172,6 @@ Transform:
   - {fileID: 6572491101150907041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8582502103107029075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129823993405682169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33aaa05fe8347ee448b298200a26fc6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayCastDistance: 1
-  movementDelay: 0.5
-  isPlayer: 1
 --- !u!136 &312133395114840868
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -206,7 +191,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -231,6 +216,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8868887630429311184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129823993405682169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27f23f50e8b7a844b737f0d6525a4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDelay: 0.1
+  characterType: 0
+  costToChangePath: 5
+  npcPath: []
+  isMoving: 0
 --- !u!1 &6002361210499710275
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class MazeRenderer : MonoBehaviour
     public int CellSize = 1;
     public NavMeshSurface navSurface;
 
-    public Pathfinder pathfinder;
     
     private void Start()
     {
