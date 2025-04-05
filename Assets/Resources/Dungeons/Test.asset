@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d031e7837ade87245a210c85b5b8460d, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  dungeonName: Test
+  wallMaterial: {fileID: 2100000, guid: 01498acadadac8642a3723191fa5fd53, type: 2}
+  floorMaterial: {fileID: -876546973899608171, guid: 570f23531ef54864fac17207c23f4bf2, type: 3}
+  dungeonSize: 17

@@ -22,6 +22,8 @@ using Random = UnityEngine.Random;
 public class MazeGenerator : MonoBehaviour
 {
     public static MazeGenerator S;
+
+    public DungeonSO dungeon;
     [Range(5, 500)]
     public int mazeWidth = 5, mazeHeight = 5; // Maze dimensions
     public int startX, startY; // The pos our algorithm will start from
@@ -32,6 +34,10 @@ public class MazeGenerator : MonoBehaviour
     void Awake()
     {
         S = this;
+        print(DungeonLoader.dungeonToLoad.name);
+        dungeon = Resources.Load<DungeonSO>("Dungeons/" + DungeonLoader.dungeonToLoad.name);
+        
+        mazeWidth = mazeHeight = dungeon.dungeonSize;
     }
     
     public MazeCell[,] GetMaze()

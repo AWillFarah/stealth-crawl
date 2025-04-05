@@ -19,7 +19,7 @@ public class Pathfinder : MonoBehaviour
     private NavMeshTriangulation Triangulation;
     
     public List<Vector3> pathPoints = new List<Vector3>();
-    public Dictionary<GameObject, Vector3> occupiedPositions = new Dictionary<GameObject, Vector3>();
+    public List<Vector3> occupiedPositions = new List<Vector3>();
     
     private bool hasChosenPath = false;
 
@@ -31,7 +31,7 @@ public class Pathfinder : MonoBehaviour
         
     }
 
-    public void CreatePath(CharacterMovement npc)
+    public void CreatePath(CharacterMovement npc, Vector3 destination)
     {
         
         Triangulation = NavMesh.CalculateTriangulation();
@@ -48,7 +48,7 @@ public class Pathfinder : MonoBehaviour
         } */
         
         NavMeshPath path = new NavMeshPath();
-        if (NavMesh.CalculatePath(npc.transform.position, targetTransform.position,  NavMesh.AllAreas, path))
+        if (NavMesh.CalculatePath(npc.transform.position, destination,  NavMesh.AllAreas, path))
         {
             pathPoints.Clear();
             for (int i = 0; i < path.corners.Length; i++)
@@ -61,8 +61,77 @@ public class Pathfinder : MonoBehaviour
                 Vector3 pathRounded = new Vector3(pathX, pathY, pathZ);
                 pathPoints.Add(pathRounded);
             }
+            
         }
+        
+    }
+
+    public bool isPositionOccupied(Vector3 pos)
+    {
+        occupiedPositions.Clear();
+        GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");
+        foreach (GameObject temp in tempArray)
+        {
+            occupiedPositions.Add(temp.transform.position);
+        }
+
+        foreach (Vector3 loc in occupiedPositions)
+        {
+            if (pos == loc)
+            {
+                return true;
+                
+            }
+        }
+        
+        
+         if (pos.x >= MazeGenerator.S.mazeWidth || pos.x < 0 || pos.z >= MazeGenerator.S.mazeHeight || pos.z < 0)
+        {
+            return true;
+        } 
+        
+        return false;
     }
     
+    
+    
+    public IEnumerator MoveTowardsTarget(Vector3 directionVector3, CharacterMovement npc)
+    {
+       
+        // We are getting the direction we want to move in + our current position
+        float dirX = Mathf.RoundToInt(directionVector3.x);
+        float dirz = Mathf.RoundToInt(directionVector3.z);
+        
+        float myX = Mathf.RoundToInt(npc.transform.position.x);
+        float myZ = Mathf.RoundToInt(npc.transform.position.z);
+        
+        Vector3 newPos = new Vector3(myX + dirX, 0.5f, myZ + dirz);
+        
+        //MeshRenderer rend = npc.gameObject.GetComponent<MeshRenderer>();
+        
+        //if (!rend.isVisible) npc.movementDelay = 0.001f;
+        npc.movementDelay = npc.defaultMovementDelay;
+        
+        float elapsedTime = 0;
+        while (elapsedTime < npc.movementDelay)
+        {
+            npc.transform.position=Vector3.Lerp(npc.transform.position , newPos,(elapsedTime / npc.movementDelay));
+            elapsedTime += Time.deltaTime;
+                    
+            yield return null;
+        }
+
+        if (transform.position == newPos)
+        {
+            float posX = Mathf.RoundToInt(npc.transform.position.x);
+            float posZ = Mathf.RoundToInt(npc.transform.position.z);
+
+            npc.transform.position = new Vector3(posX, 0.5f, posZ);
+        }
+
+        
+        
+        npc.isMoving = false;
+    }
     
 }

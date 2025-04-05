@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnManagerNew : MonoBehaviour
+public class TurnManager : MonoBehaviour
 {
-    public static TurnManagerNew S;
+    public static TurnManager S;
     
     [Header("Dynamic")]
     [Tooltip("The order of turns for the scene")]
@@ -30,7 +30,7 @@ public class TurnManagerNew : MonoBehaviour
     }
     void StartTurn(GameObject currentTurn)
     {
-        print("it is " + currentTurn + "'s turn");
+        //print("it is " + currentTurn + "'s turn");
         currentTurn.GetComponent<CharacterMovement>().enabled = true;
     }
     
@@ -40,9 +40,12 @@ public class TurnManagerNew : MonoBehaviour
         // I realllllyyy wanna be sure they're in the right spot because ive been getting some rounding errors
         character.transform.position = new Vector3(Mathf.RoundToInt(character.transform.position.x), 0.5f, 
         Mathf.RoundToInt(character.transform.position.z));
+        
         character.GetComponent<CharacterMovement>().enabled = false;
+
         turnOrder.Dequeue();
         if (turnOrder.Count <= 0) QueueTurns();
-        StartTurn(turnOrder.Peek());
+        if(turnOrder.Peek() == null) QueueTurns();
+        else StartTurn(turnOrder.Peek());
     }
 }
