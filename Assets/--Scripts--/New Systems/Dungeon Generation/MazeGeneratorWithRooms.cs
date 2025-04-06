@@ -2,12 +2,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MazeGeneratorWithRoom : MonoBehaviour {
+/*
+⠀⠀⢀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢀⣼⣋⢿⣿⣦⠀⢀⣤⣤⣤⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠘⠋⠀⠉⡘⣟⠇⠀⣸⣿⡿⢿⣿⣿⣦⣄⣀⡀⠀⠀⠀⠀
+⠰⡤⢤⠀⡱⢇⣀⠴⠑⢤⡄⢈⣛⣫⣿⣷⡟⠿⢤⣄⠀⠀
+⠀⠈⠁⢠⡀⠈⢱⠀⠀⠀⣤⣟⠀⠣⠵⠞⢃⠀⠀⣹⠀⠀
+⠀⠀⠀⢀⠑⠟⠘⠀⠀⢰⡶⠀⠀⠀⢛⡓⣸⣀⣴⠏⢀⡀
+⠀⠀⠀⠀⢰⡆⠀⣠⣄⠀⠀⢰⡇⠀⠛⠩⠇⣏⣥⢾⠿⡇
+⠀⠀⠀⠸⡸⠧⠀⠈⠻⣶⣤⣤⣁⣀⣶⠀⢀⠇⠔⠚⠉⠁
+⠀⠀⣠⡾⢙⣄⠀⠀⠀⠈⠉⠛⠉⡠⣤⡤⡎⠀⠀⠀⠀⠀
+⠀⠀⡽⠄⠹⡆⠙⠢⠤⢄⣀⠀⠤⢤⠂⡠⢵⣠⡄⠀⠀⠀
+⠀⠘⠄⠀⠊⠁⠀⠀⠀⠀⠀⠀⠀⢸⡂⠀⠈⣠⠇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀
+*/
+
+public class MazeGeneratorWithRooms : MonoBehaviour {
 
     
-    public static MazeGeneratorWithRoom Instance;
+    public static MazeGeneratorWithRooms S;
+    public DungeonSO dungeon;
     
-    [Range(5, 500)]
+    [Range(5, 100)]
     public int mazeWidth = 5, mazeHeight = 5;           // The dimensions of the maze.
     public int startX, startY;                          // The position our algorithm will start from.
     MazeCellNew[,] maze;                                   // An array of maze cells representing the maze grid.
@@ -21,9 +37,20 @@ public class MazeGeneratorWithRoom : MonoBehaviour {
     
     public List<Room> rooms = new List<Room>();
 
-    private void Start()
+    private void Awake()
     {
-        Instance = this;
+        S = this;
+        // Loading in Dungeon!
+        dungeon = Resources.Load<DungeonSO>("Dungeons/" + DungeonLoader.dungeonToLoad.name);
+        print(dungeon);
+        
+        mazeWidth = mazeHeight = dungeon.dungeonSize;
+        roomCount = dungeon.roomCount;
+        roomXSizeMin = dungeon.roomXSizeMin;
+        roomXSizeMax = dungeon.roomXSizeMax;
+        roomYSizeMin = dungeon.roomYSizeMin;
+        roomYSizeMax = dungeon.roomYSizeMax;
+        
     }
 
     public MazeCellNew[,] GetMaze() 

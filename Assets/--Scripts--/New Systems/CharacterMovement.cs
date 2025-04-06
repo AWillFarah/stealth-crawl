@@ -83,7 +83,7 @@ public class CharacterMovement : MonoBehaviour
             }
             
         }
-        else
+        else // This is all going to be gutted again lol
         {
             if(target == null)
             {
@@ -242,7 +242,7 @@ public class CharacterMovement : MonoBehaviour
             TurnManager.S.EndTurn();
             return;
         }
-        else if (!Physics.Linecast(transform.position, newPos, out RaycastHit hit))
+        if (!Physics.Linecast(transform.position, newPos, out RaycastHit hit))
         {
             StartCoroutine(MoveTowardsTarget(directionV3));
             

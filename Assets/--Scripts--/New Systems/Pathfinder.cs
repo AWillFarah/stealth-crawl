@@ -85,7 +85,7 @@ public class Pathfinder : MonoBehaviour
         }
         
         
-         if (pos.x >= MazeGenerator.S.mazeWidth || pos.x < 0 || pos.z >= MazeGenerator.S.mazeHeight || pos.z < 0)
+         if (pos.x >= MazeGeneratorWithRooms.S.mazeWidth || pos.x < 0 || pos.z >= MazeGeneratorWithRooms.S.mazeHeight || pos.z < 0)
         {
             return true;
         } 

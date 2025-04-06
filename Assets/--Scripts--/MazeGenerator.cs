@@ -35,7 +35,7 @@ public class MazeGenerator : MonoBehaviour
     {
         S = this;
         print(DungeonLoader.dungeonToLoad.name);
-        dungeon = Resources.Load<DungeonSO>("Dungeons/" + DungeonLoader.dungeonToLoad.name);
+        dungeon = Resources.Load<DungeonSO>("Dungeons/" + dungeon.name);
         
         mazeWidth = mazeHeight = dungeon.dungeonSize;
     }

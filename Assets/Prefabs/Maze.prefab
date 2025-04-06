@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2346664678143160407}
-  - component: {fileID: 2367040057903199638}
-  - component: {fileID: 1509168426114007345}
   - component: {fileID: 7143553467666585072}
   - component: {fileID: 4831023385559348277}
   - component: {fileID: 2776087303834246340}
+  - component: {fileID: 7270815180528402209}
+  - component: {fileID: 928423398447538338}
   m_Layer: 0
   m_Name: Maze
   m_TagString: Untagged
@@ -36,40 +36,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2367040057903199638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3998241499065435671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce1b33616434f344199e4f370ea26ecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dungeon: {fileID: 11400000, guid: 96b256df2898a59469187a5439e28dc1, type: 2}
-  mazeWidth: 15
-  mazeHeight: 15
-  startX: 0
-  startY: 0
---- !u!114 &1509168426114007345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3998241499065435671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1329f7f3be80c4188f2153b41a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeGenerator: {fileID: 2367040057903199638}
-  MazeCellPrefab: {fileID: 4491799565942539909, guid: 6c3ea583fb1096d4ebfff604f29b470f, type: 3}
-  exit: {fileID: 1560018017823259080, guid: 54dbaa61ce57ca640aba1cb89facd62a, type: 3}
-  CellSize: 1
-  navSurface: {fileID: 4831023385559348277}
 --- !u!114 &7143553467666585072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +94,43 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   pathPoints: []
   occupiedPositions: []
+--- !u!114 &7270815180528402209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998241499065435671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8359adabef04306408bdf6c2627d9434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeon: {fileID: 0}
+  mazeWidth: 20
+  mazeHeight: 20
+  startX: 0
+  startY: 0
+  roomCount: 5
+  roomXSizeMin: 2
+  roomXSizeMax: 10
+  roomYSizeMin: 2
+  roomYSizeMax: 10
+  rooms: []
+--- !u!114 &928423398447538338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998241499065435671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982817873c1fc3a4789b46f0cfae28a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeGenerator: {fileID: 7270815180528402209}
+  MazeCellPrefab: {fileID: 4491799565942539909, guid: 6c3ea583fb1096d4ebfff604f29b470f, type: 3}
+  exit: {fileID: 0}
+  CellSize: 1
+  navSurface: {fileID: 4831023385559348277}

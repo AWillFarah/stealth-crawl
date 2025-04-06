@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 83076903148079616, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1517604371790699655, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: stats
@@ -324,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 83076903148079616, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1517604371790699655, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: stats
@@ -409,7 +409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 83076903148079616, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1517604371790699655, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: stats
@@ -820,6 +820,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 928423398447538338, guid: 2869b81873f727b42871170991dca30e, type: 3}
+      propertyPath: exit
+      value: 
+      objectReference: {fileID: 1560018017823259080, guid: 54dbaa61ce57ca640aba1cb89facd62a, type: 3}
     - target: {fileID: 2346664678143160407, guid: 2869b81873f727b42871170991dca30e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -860,14 +864,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2367040057903199638, guid: 2869b81873f727b42871170991dca30e, type: 3}
-      propertyPath: mazeWidth
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367040057903199638, guid: 2869b81873f727b42871170991dca30e, type: 3}
-      propertyPath: mazeHeight
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 2776087303834246340, guid: 2869b81873f727b42871170991dca30e, type: 3}
       propertyPath: targetTransform
       value: 
@@ -875,6 +871,18 @@ PrefabInstance:
     - target: {fileID: 3998241499065435671, guid: 2869b81873f727b42871170991dca30e, type: 3}
       propertyPath: m_Name
       value: Maze
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270815180528402209, guid: 2869b81873f727b42871170991dca30e, type: 3}
+      propertyPath: dungeon
+      value: 
+      objectReference: {fileID: 11400000, guid: 96b256df2898a59469187a5439e28dc1, type: 2}
+    - target: {fileID: 7270815180528402209, guid: 2869b81873f727b42871170991dca30e, type: 3}
+      propertyPath: mazeWidth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270815180528402209, guid: 2869b81873f727b42871170991dca30e, type: 3}
+      propertyPath: mazeHeight
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -889,6 +897,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 312133395114840868, guid: c1d64b059d973c04ea0131d17ce124de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 312133395114840868, guid: c1d64b059d973c04ea0131d17ce124de, type: 3}
       propertyPath: m_IsTrigger
       value: 0

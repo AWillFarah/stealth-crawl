@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/--Scenes--/_Scene_1.unity
+    path: Assets/--Scenes--/DungeonPicker.unity
     guid: 82f87b7f5df412c429a8db651568c28e
   - enabled: 1
     path: Assets/--Scenes--/Maze.unity
