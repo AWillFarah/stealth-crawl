@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMovementDelay: 0.1
   characterType: 0
-  enemy: 
+  teamNumber: 0
   costToChangePath: 5
   rend: {fileID: 7880190409636368741}
   movementDelay: 0.2
@@ -249,6 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c813dcd929d73594b980f2119f0b9424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 5aeacf18e60792040b4e802f310c6a3b, type: 2}
+  currentHealth: 1
 --- !u!1 &6002361210499710275
 GameObject:
   m_ObjectHideFlags: 0

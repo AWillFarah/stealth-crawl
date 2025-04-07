@@ -41,7 +41,10 @@ public class MazeGeneratorWithRooms : MonoBehaviour {
     {
         S = this;
         // Loading in Dungeon!
-        dungeon = Resources.Load<DungeonSO>("Dungeons/" + DungeonLoader.dungeonToLoad.name);
+        if (DungeonLoader.dungeonToLoad != null)
+        {
+            dungeon = Resources.Load<DungeonSO>("Dungeons/" + DungeonLoader.dungeonToLoad.name);  
+        }
         print(dungeon);
         
         mazeWidth = mazeHeight = dungeon.dungeonSize;

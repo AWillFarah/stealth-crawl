@@ -12,13 +12,16 @@ public class MazeRendererRooms : MonoBehaviour
     [SerializeField] MazeGeneratorWithRooms mazeGenerator;
     [SerializeField] GameObject MazeCellPrefab;
     Dictionary<Vector3Int, MazeCellObject> cells = new Dictionary<Vector3Int, MazeCellObject>();
-    [SerializeField] GameObject exit;
+    
     
     // This is the physical size of our maze cells. Getting this wrong will result in overlapping
     // or visibile gaps between each cell
     public int CellSize = 1;
     public NavMeshSurface navSurface;
 
+    [Header("Objects to Spawn")]
+    public GameObject exit;
+    public GameObject player;
     
     private void Start()
     {
@@ -63,19 +66,31 @@ public class MazeRendererRooms : MonoBehaviour
 
          
         }
-        
-        //TileWalls();
         navSurface.BuildNavMesh();
         
         // Creating Exit
-        CreateExit();
+        SpawnEntities();
     }
 
-    void CreateExit()
+    void SpawnEntities()
     {
-        Room exitRoom = mazeGenerator.rooms[Random.Range(0, (mazeGenerator.rooms.Count - 1))];
-        Vector2 tile = exitRoom.tilesInRoom[Random.Range(0, (exitRoom.tilesInRoom.Count - 1))];
         
+        
+        Room exitRoom = GetRoom();
+        Vector2 tile = exitRoom.tilesInRoom[Random.Range(0, (exitRoom.tilesInRoom.Count - 1))];
         Instantiate(exit, new Vector3(tile.x, -0.2f, tile.y), Quaternion.identity, transform);
+        
+        Room playerSpawmRoom = GetRoom();
+        tile = playerSpawmRoom.tilesInRoom[Random.Range(0, (exitRoom.tilesInRoom.Count - 1))];
+        GameObject newPlayer = Instantiate(player, new Vector3(tile.x, 0.5f, tile.y), Quaternion.identity, transform);
+        
+        GameObject cam = Camera.main.gameObject;
+        CameraMovement camMovement = cam.GetComponent<CameraMovement>();
+        camMovement.FindPlayer(newPlayer);
+    }
+
+    private Room GetRoom()
+    {
+        return mazeGenerator.rooms[Random.Range(0, (mazeGenerator.rooms.Count - 1))];
     }
 }

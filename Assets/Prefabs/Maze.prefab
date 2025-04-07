@@ -106,15 +106,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8359adabef04306408bdf6c2627d9434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeon: {fileID: 0}
-  mazeWidth: 20
-  mazeHeight: 20
+  dungeon: {fileID: 11400000, guid: 96b256df2898a59469187a5439e28dc1, type: 2}
+  mazeWidth: 10
+  mazeHeight: 10
   startX: 0
   startY: 0
-  roomCount: 5
-  roomXSizeMin: 2
+  roomCount: 3
+  roomXSizeMin: 10
   roomXSizeMax: 10
-  roomYSizeMin: 2
+  roomYSizeMin: 10
   roomYSizeMax: 10
   rooms: []
 --- !u!114 &928423398447538338
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeGenerator: {fileID: 7270815180528402209}
   MazeCellPrefab: {fileID: 4491799565942539909, guid: 6c3ea583fb1096d4ebfff604f29b470f, type: 3}
-  exit: {fileID: 0}
   CellSize: 1
   navSurface: {fileID: 4831023385559348277}
+  exit: {fileID: 1560018017823259080, guid: 54dbaa61ce57ca640aba1cb89facd62a, type: 3}
+  player: {fileID: 2129823993405682169, guid: c1d64b059d973c04ea0131d17ce124de, type: 3}
