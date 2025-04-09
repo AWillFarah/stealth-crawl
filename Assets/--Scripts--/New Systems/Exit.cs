@@ -14,9 +14,9 @@ public class Exit : MonoBehaviour
         if (c != null)
         {
             if(c.characterType != characterType.player) return;
-            print("Exit");
+            c.OnExit();
             SceneManager.LoadScene("Maze");
-            InputSystem_Actions.Player.Disable();
+            
         }
     }
 }

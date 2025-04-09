@@ -10,5 +10,5 @@ public class DungeonSO : ScriptableObject
     public Material floorMaterial;
     public int dungeonSize;
     [Range(0, 10)] public int roomCount = 1;
-    [Range(2,20)] public int roomXSizeMin, roomXSizeMax, roomYSizeMin, roomYSizeMax = 5;
+    [Range(1,20)] public int roomXSizeMin, roomXSizeMax, roomYSizeMin, roomYSizeMax = 5;
 }

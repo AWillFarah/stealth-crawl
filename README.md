@@ -2,7 +2,7 @@
 
 #### Author: *Replace this with your name*
 
-##### Modified: *2024-09-06*
+##### Modified: *2024-09-04*
 
 
 <br>
@@ -58,7 +58,9 @@
 **6. Did you get help from any online websites, videos, or tutorials?**   
 
 > &nbsp;
-><i>(link them here)</i>   
+><i>State Machine https://www.youtube.com/watch?v=cnpJtheBLLY&t=33s&ab_channel=SebastianGraves    
+> LOS https://www.youtube.com/watch?v=znZXmmyBF-o    
+> </i>   
 > &nbsp;
  
 

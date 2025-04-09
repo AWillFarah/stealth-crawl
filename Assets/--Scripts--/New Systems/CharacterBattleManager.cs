@@ -6,6 +6,7 @@ public class CharacterBattleManager : MonoBehaviour
 {
     [Header("Inscribed")]
     public StatSO stats;
+    public int teamNumber = 0;
     
     [Header("Dynamic")]
     private int maxHealth = 100;
@@ -18,7 +19,7 @@ public class CharacterBattleManager : MonoBehaviour
     
     public void Attack()
     {
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, 1.41f) && hit.collider.tag == "Character")
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, 1.41f) )
         {
             print("attacking");
             CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();

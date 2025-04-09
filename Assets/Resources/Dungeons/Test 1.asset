@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d031e7837ade87245a210c85b5b8460d, type: 3}
   m_Name: Test 1
   m_EditorClassIdentifier: 
-  dungeonName: Test 2
-  wallMaterial: {fileID: 2100000, guid: 7ff029512d6e8464fb415b6ac71c2db7, type: 2}
-  floorMaterial: {fileID: -876546973899608171, guid: 570f23531ef54864fac17207c23f4bf2, type: 3}
-  dungeonSize: 17
-  roomCount: 1
-  roomXSizeMin: 2
-  roomXSizeMax: 2
-  roomYSizeMin: 2
-  roomYSizeMax: 5
+  dungeonName: 
+  wallMaterial: {fileID: 2100000, guid: a270bab5c1bcdad449a7f8e35d6f3766, type: 2}
+  floorMaterial: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  dungeonSize: 10
+  roomCount: 5
+  roomXSizeMin: 1
+  roomXSizeMax: 1
+  roomYSizeMin: 1
+  roomYSizeMax: 1

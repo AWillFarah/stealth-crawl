@@ -12,18 +12,29 @@ public enum characterType
     player, npc
 }
 
+public enum npcState
+{
+    attacking, chasing, changeWanderPoint, Investigating, Wandering
+}
+
+/// <summary>
+/// This will handle anything an entity can do on its turn
+/// </summary>
+
 public class CharacterMovement : MonoBehaviour
 {
     [Header("Inscribed")]
     public float defaultMovementDelay = 0.5f;
     private InputSystem_Actions playerControls;
     public characterType characterType = characterType.npc;
-    public int teamNumber = 0;
+   
     
     [SerializeField] private float costToChangePath = 5;
     private CharacterBattleManager characterBattleManager;
     
     [SerializeField] Renderer rend;
+    
+    public StateManager stateManager;
     
     [Header("Dynamic")]
     public float movementDelay = 0.5f;
@@ -37,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
     private bool hasPath;
     private Vector3 pathDestination;
     
-    private Transform target;
+    public Transform target;
     
     private void Start()
     {
@@ -83,40 +94,43 @@ public class CharacterMovement : MonoBehaviour
             }
             
         }
-        else // This is all going to be gutted again lol
+        else
         {
-            if(target == null)
+            stateManager.CheckState();
+
+            switch (stateManager.currentAIState)
             {
-                if(!hasPath) Pathfinder.S.CreatePath(this, PickAPoint());
-                else Pathfinder.S.CreatePath(this, pathDestination);
+                case(AIState.wandering):
+                    if (!hasPath)
+                    {
+                        
+                    }
+                    Pathfinder.S.CreatePath(this, PickAPoint()); 
+                    NPCMovement();
+                    break;
+                case(AIState.investigating):
+                    Pathfinder.S.CreatePath(this, PickAPoint()); 
+                    NPCMovement();
+                    break;
+                case(AIState.chasing):
+                    Pathfinder.S.CreatePath(this, target.position);
+                    NPCMovement();
+                    break;
+                case(AIState.attacking):
+                    break;
             }
-            // Let's check if our target is within reach
-            else if (target != null &&
-                     Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward),
-                         out RaycastHit hit, 1.41f))
-            {
-                print("attacking!");
-                transform.LookAt(hit.point);
-                characterBattleManager.Attack();
-                isMoving = true;
-            }
-            else
-            {
-                Pathfinder.S.CreatePath(this, target.position);
-            }
-            if(!isMoving) NPCMovement();
-            
         }
     }
 
     private Vector3 PickAPoint()
     {
-        float xPoint = UnityEngine.Random.Range(0, MazeGenerator.S.mazeWidth);
-        float yPoint = UnityEngine.Random.Range(0, MazeGenerator.S.mazeHeight);
+        
+        // This needs to be rewritten to only grab points that are in rooms!
+        float xPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeWidth);
+        float yPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeHeight);
         pathDestination = new Vector3(xPoint, 0.5f, yPoint);
         hasPath = true;
         return new Vector3(xPoint, 0.5f, yPoint);
-        
     }
     
     /// <summary>
@@ -215,16 +229,7 @@ public class CharacterMovement : MonoBehaviour
         isMoving = true;
     }
 
-    public void FoundSomething(List<GameObject> objects)
-    {
-        foreach (GameObject obj in objects)
-        {
-            CharacterMovement c = obj.GetComponent<CharacterMovement>();
-            
-            if(c.teamNumber != teamNumber) target = obj.transform;
-            
-        }
-    }
+   
     
     private void PlayerMovement(Vector3 directionV3)
     {
@@ -253,8 +258,6 @@ public class CharacterMovement : MonoBehaviour
             TurnManager.S.EndTurn(); 
         }
     }
-    
-    
     
     public IEnumerator MoveTowardsTarget(Vector3 directionVector3)
     {
@@ -294,5 +297,10 @@ public class CharacterMovement : MonoBehaviour
         } 
         
         isMoving = false;
+    }
+
+    public void OnExit()
+    {
+        playerControls.Player.Disable();
     }
 }

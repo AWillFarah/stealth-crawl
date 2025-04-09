@@ -54,10 +54,9 @@ public class LineOfSight : MonoBehaviour
             if (IsInSight(obj) && obj != gameObject)
             {
                 objects.Add(obj);
-                
             }
         }
-        if (thisCharacter.enabled) thisCharacter.FoundSomething(objects);
+        
         
     }
     

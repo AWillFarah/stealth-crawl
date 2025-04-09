@@ -2,17 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State : MonoBehaviour
+public abstract class State : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
+    public abstract State RunCurrentState();
+    
+    [Header("Inscribed")]
+    [HideInInspector] public LineOfSight lOS;
+    private CharacterBattleManager cBM;
+    [SerializeField] CharacterMovement cM;
+    
+    [HideInInspector] public AIState thisState;
+    public ChaseState chaseState;
+    public AttackState attackState;
+    public WanderState wanderState;
+    public InvestigateState investigateState;
+    
     void Start()
     {
+        lOS = GetComponentInParent<LineOfSight>();
+        cBM = GetComponentInParent<CharacterBattleManager>();
+    }
+    
+    public bool canSeeEnemy()
+    {
+        
+        foreach (GameObject gO in lOS.objects)
+        {
+            CharacterBattleManager c = gO.GetComponent<CharacterBattleManager>();
+            if (c.teamNumber != cBM.teamNumber)
+            {
+                cM.target = c.transform;
+                return true;
+            }
+        }
+        return false;
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool heardSomething()
     {
-        
+        return false;
     }
 }

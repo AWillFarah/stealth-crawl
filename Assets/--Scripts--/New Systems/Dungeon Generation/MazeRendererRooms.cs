@@ -76,12 +76,12 @@ public class MazeRendererRooms : MonoBehaviour
     {
         
         
-        Room exitRoom = GetRoom();
-        Vector2 tile = exitRoom.tilesInRoom[Random.Range(0, (exitRoom.tilesInRoom.Count - 1))];
+        //Room exitRoom = GetRoom();
+        Vector2 tile = GetSpawnPosition();
         Instantiate(exit, new Vector3(tile.x, -0.2f, tile.y), Quaternion.identity, transform);
         
-        Room playerSpawmRoom = GetRoom();
-        tile = playerSpawmRoom.tilesInRoom[Random.Range(0, (exitRoom.tilesInRoom.Count - 1))];
+        //Room playerSpawmRoom = GetRoom();
+        tile = GetSpawnPosition();
         GameObject newPlayer = Instantiate(player, new Vector3(tile.x, 0.5f, tile.y), Quaternion.identity, transform);
         
         GameObject cam = Camera.main.gameObject;
@@ -89,8 +89,9 @@ public class MazeRendererRooms : MonoBehaviour
         camMovement.FindPlayer(newPlayer);
     }
 
-    private Room GetRoom()
+    public Vector2Int GetSpawnPosition()
     {
-        return mazeGenerator.rooms[Random.Range(0, (mazeGenerator.rooms.Count - 1))];
+        Room r = mazeGenerator.rooms[Random.Range(0, (mazeGenerator.rooms.Count - 1))];
+        return r.tilesInRoom[Random.Range(0, ( r.tilesInRoom.Count - 1))];
     }
 }
