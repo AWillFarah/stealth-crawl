@@ -101,19 +101,23 @@ public class CharacterMovement : MonoBehaviour
             switch (stateManager.currentAIState)
             {
                 case(AIState.wandering):
-                    if (!hasPath)
-                    {
-                        
+                    if (!hasPath || npcPath.Count == 0)
+                    { 
+                        Pathfinder.S.CreatePath(this, PickAPoint());  
+                        npcPath.AddRange(Pathfinder.S.pathPoints); 
                     }
-                    Pathfinder.S.CreatePath(this, PickAPoint()); 
+                    
                     NPCMovement();
                     break;
                 case(AIState.investigating):
-                    Pathfinder.S.CreatePath(this, PickAPoint()); 
+                    Pathfinder.S.CreatePath(this, new Vector3(0, 0.5f, 0)); 
+                    npcPath.AddRange(Pathfinder.S.pathPoints); 
+                    
                     NPCMovement();
                     break;
                 case(AIState.chasing):
                     Pathfinder.S.CreatePath(this, target.position);
+                    CostToChangePath();
                     NPCMovement();
                     break;
                 case(AIState.attacking):
@@ -132,15 +136,12 @@ public class CharacterMovement : MonoBehaviour
         hasPath = true;
         return new Vector3(xPoint, 0.5f, yPoint);
     }
-    
-    /// <summary>
-    /// I could handle this all in the else statement but this is going to be long enough to justify a void
-    /// </summary>
-    private void NPCMovement()
+
+
+    // This is A* adjacent chicanery, we check if it is worth it to change the current path we are on
+    //to the player
+    private void CostToChangePath()
     {
-        
-        // This is A* adjacent chicanery, we check if it is worth it to change the current path we are on
-        //to the player
         if (npcPath.Count > 0)
         {
             foreach (Vector3 node in Pathfinder.S.pathPoints)
@@ -188,6 +189,10 @@ public class CharacterMovement : MonoBehaviour
         {
             npcPath.AddRange(Pathfinder.S.pathPoints); 
         }
+    }
+    
+    private void NPCMovement()
+    {
         
         // Checking that our current position is spot 0
         Vector3 transRouned = transform.position;
