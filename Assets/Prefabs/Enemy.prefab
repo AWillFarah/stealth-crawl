@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4597605445998836938}
   - component: {fileID: 1517604371790699655}
   - component: {fileID: 6480201351971673504}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -100,9 +100,12 @@ MonoBehaviour:
   costToChangePath: 5
   rend: {fileID: 2052099816891364556}
   stateManager: {fileID: 6480201351971673504}
+  footStepSound: {fileID: 11400000, guid: bfa6903dc736758458c2b4f9fd62bb0c, type: 2}
+  hearing: {fileID: 461654107735172137}
   movementDelay: 0.5
   npcPath: []
   isMoving: 0
+  hasPath: 0
   target: {fileID: 0}
 --- !u!114 &1517604371790699655
 MonoBehaviour:
@@ -143,8 +146,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5084416101340454651}
   - component: {fileID: 4062684530069505318}
+  - component: {fileID: 5019368261936569764}
+  - component: {fileID: 2434291489571939096}
   m_Layer: 7
-  m_Name: States
+  m_Name: LOS and Hearing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yOffset: -0.5
-  distance: 5
-  angle: 20
+  distance: 7
+  angle: 5.1
   height: 0.5
   meshColor: {r: 0, g: 0, b: 1, a: 0.59607846}
   scanFrequency: 30
@@ -194,6 +199,39 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   objects: []
+--- !u!135 &5019368261936569764
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461654107735172137}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6.05
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2434291489571939096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461654107735172137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5459af865b4ff34dbf5e0da578d0165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4073414485625640058
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7032278148427517564}
   - component: {fileID: 7684560276159085099}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: InvestigateState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +294,7 @@ GameObject:
   - component: {fileID: 3472121163546520895}
   - component: {fileID: 1576006622596048335}
   - component: {fileID: 2052099816891364556}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2855068871140097245}
   - component: {fileID: 4395020813421343663}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: AttackState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,6 +420,7 @@ MonoBehaviour:
   attackState: {fileID: 4395020813421343663}
   wanderState: {fileID: 2337915910618874675}
   investigateState: {fileID: 7684560276159085099}
+  isInRange: 0
 --- !u!1 &7365942258664724702
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3505009162473141936}
   - component: {fileID: 3253608245365139116}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: ChaseState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1573911227652212193}
   - component: {fileID: 2337915910618874675}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: WanderState
   m_TagString: Untagged
   m_Icon: {fileID: 0}

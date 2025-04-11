@@ -90,6 +90,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -198,7 +201,7 @@ CapsuleCollider:
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &7965521322757534885
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -212,6 +215,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -231,12 +235,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMovementDelay: 0.1
   characterType: 0
-  teamNumber: 0
   costToChangePath: 5
   rend: {fileID: 7880190409636368741}
+  stateManager: {fileID: 0}
+  footStepSound: {fileID: 11400000, guid: bfa6903dc736758458c2b4f9fd62bb0c, type: 2}
+  hearing: {fileID: 867744648646002031}
   movementDelay: 0.2
   npcPath: []
   isMoving: 0
+  hasPath: 0
+  target: {fileID: 0}
 --- !u!114 &6911687506352415535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 5aeacf18e60792040b4e802f310c6a3b, type: 2}
+  teamNumber: 0
   currentHealth: 1
 --- !u!1 &6002361210499710275
 GameObject:
@@ -311,6 +320,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

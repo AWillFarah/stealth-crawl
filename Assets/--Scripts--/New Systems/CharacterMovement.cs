@@ -27,7 +27,6 @@ public class CharacterMovement : MonoBehaviour
     public float defaultMovementDelay = 0.5f;
     private InputSystem_Actions playerControls;
     public characterType characterType = characterType.npc;
-   
     
     [SerializeField] private float costToChangePath = 5;
     private CharacterBattleManager characterBattleManager;
@@ -35,6 +34,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] Renderer rend;
     
     public StateManager stateManager;
+    
+    [SerializeField] SoundFXSO footStepSound;
+    [SerializeField] private GameObject hearing;
     
     [Header("Dynamic")]
     public float movementDelay = 0.5f;
@@ -45,7 +47,7 @@ public class CharacterMovement : MonoBehaviour
     private float newPathCost;
     private float oldPathCost;
 
-    private bool hasPath;
+    [HideInInspector] public bool hasPath;
     private Vector3 pathDestination;
     
     public Transform target;
@@ -106,13 +108,14 @@ public class CharacterMovement : MonoBehaviour
                         Pathfinder.S.CreatePath(this, PickAPoint());  
                         npcPath.AddRange(Pathfinder.S.pathPoints); 
                     }
-                    
                     NPCMovement();
                     break;
                 case(AIState.investigating):
-                    Pathfinder.S.CreatePath(this, new Vector3(0, 0.5f, 0)); 
-                    npcPath.AddRange(Pathfinder.S.pathPoints); 
-                    
+                    if (!hasPath || npcPath.Count == 0)
+                    {
+                        Pathfinder.S.CreatePath(this, new Vector3(0, 0.5f, 0));
+                        npcPath.AddRange(Pathfinder.S.pathPoints);
+                    }
                     NPCMovement();
                     break;
                 case(AIState.chasing):
@@ -128,12 +131,12 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector3 PickAPoint()
     {
-        
+        npcPath.Clear(); // We need to clear the path if we are wandering and have hit another ally
         // This needs to be rewritten to only grab points that are in rooms!
         float xPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeWidth);
         float yPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeHeight);
         pathDestination = new Vector3(xPoint, 0.5f, yPoint);
-        hasPath = true;
+        
         return new Vector3(xPoint, 0.5f, yPoint);
     }
 
@@ -200,7 +203,7 @@ public class CharacterMovement : MonoBehaviour
         transRouned.y = 0.5f;
         transRouned.z = Mathf.RoundToInt(transform.position.z);
         
-        if (npcPath[0] == transRouned) npcPath.RemoveAt(0);
+        if (npcPath.Count > 0 && npcPath[0] == transRouned) npcPath.RemoveAt(0);
         
         // We need this to be an if statement because we need to check right after we remove the point if
         // we have any points in our list
@@ -226,11 +229,13 @@ public class CharacterMovement : MonoBehaviour
         // Let's check if this position is already occupied before we move
         if (Pathfinder.S.isPositionOccupied(newPos))
         {
+            // Need to avoid characters getting stuck on each other while wandering
+            if(stateManager.currentAIState == AIState.wandering) hasPath = false;
             TurnManager.S.EndTurn();
             return;
         }
         StartCoroutine(MoveTowardsTarget(directionV3));
-        
+        SoundFXManager.S.PlaySoundFXClip(footStepSound, hearing);
         isMoving = true;
     }
 
@@ -254,6 +259,7 @@ public class CharacterMovement : MonoBehaviour
         }
         if (!Physics.Linecast(transform.position, newPos, out RaycastHit hit))
         {
+            SoundFXManager.S.PlaySoundFXClip(footStepSound, hearing);
             StartCoroutine(MoveTowardsTarget(directionV3));
             
         }

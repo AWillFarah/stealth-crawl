@@ -12,7 +12,7 @@ public class WanderState : State
             return chaseState;
         }
 
-        if (heardSomething())
+        if (heardSomething)
         {
             thisState = AIState.investigating;
             return investigateState;

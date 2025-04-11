@@ -61,7 +61,7 @@ public class Pathfinder : MonoBehaviour
                 Vector3 pathRounded = new Vector3(pathX, pathY, pathZ);
                 pathPoints.Add(pathRounded);
             }
-            
+            npc.hasPath = true;   
         }
         
     }

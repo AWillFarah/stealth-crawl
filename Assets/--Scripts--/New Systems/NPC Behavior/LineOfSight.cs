@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class LineOfSight : MonoBehaviour
 {
     [Header("Inscribed")]
-    private CharacterMovement thisCharacter;
     public float yOffset = -0.5f;
     public float distance = 10;
     public float angle = 30;
@@ -28,7 +27,7 @@ public class LineOfSight : MonoBehaviour
 
     void Start()
     {
-        thisCharacter = gameObject.GetComponent<CharacterMovement>();
+        
         scanInterval = 1f / scanFrequency;
     }
 
@@ -56,7 +55,6 @@ public class LineOfSight : MonoBehaviour
                 objects.Add(obj);
             }
         }
-        
         
     }
     
@@ -184,7 +182,7 @@ public class LineOfSight : MonoBehaviour
             Gizmos.DrawMesh(mesh, transform.position, transform.rotation);
         }
         
-        Gizmos.DrawWireSphere(transform.position, distance);
+        //Gizmos.DrawWireSphere(transform.position, distance);
         for (int i = 0; i < count; ++i)
         {
             Gizmos.DrawSphere(colliders[i].transform.position, .1f);

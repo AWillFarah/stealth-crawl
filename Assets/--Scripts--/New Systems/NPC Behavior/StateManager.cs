@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public enum AIState
 {
@@ -10,9 +11,11 @@ public class StateManager : MonoBehaviour
 {
     public State currentState;
     public AIState currentAIState;
+    private CharacterMovement character;
     
    public void CheckState()
     {
+        character = gameObject.GetComponent<CharacterMovement>();
         RunStateMachine();
     }
 
@@ -30,6 +33,12 @@ public class StateManager : MonoBehaviour
 
     private void SwitchToNextState(State nextState)
     {
+        // We should only clear our path if our current state != our next state
+        if (currentState != nextState)
+        {
+            character.hasPath = false;  
+        }
         currentState = nextState;
+        
     }
 }

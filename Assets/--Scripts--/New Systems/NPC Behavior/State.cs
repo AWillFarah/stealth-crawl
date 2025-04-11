@@ -17,6 +17,9 @@ public abstract class State : MonoBehaviour
     public AttackState attackState;
     public WanderState wanderState;
     public InvestigateState investigateState;
+
+    [Header("Dyanmic")] 
+    public bool heardSomething;
     
     void Start()
     {
@@ -40,8 +43,10 @@ public abstract class State : MonoBehaviour
         
     }
 
-    public bool heardSomething()
+    public void heardNoise()
     {
-        return false;
+      heardSomething = true;  
     }
+    
+    
 }
