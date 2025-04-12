@@ -29,7 +29,8 @@ public class SoundFXManager : MonoBehaviour
         
         
         //spawn in gameObject
-        AudioSource audioSource = Instantiate(soundFXObject, spawnGO.transform.position, Quaternion.identity);
+        AudioSource audioSource = Instantiate(soundFXObject, new Vector3(spawnGO.transform.position.x, 0.5f, spawnGO.transform.position.z), 
+            Quaternion.identity);
         
         //assign the audioClip
         audioSource.clip = audioClip.sound;

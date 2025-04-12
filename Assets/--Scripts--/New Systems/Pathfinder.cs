@@ -94,7 +94,7 @@ public class Pathfinder : MonoBehaviour
     }
     
     
-    
+    /*
     public IEnumerator MoveTowardsTarget(Vector3 directionVector3, CharacterMovement npc)
     {
        
@@ -133,5 +133,5 @@ public class Pathfinder : MonoBehaviour
         
         npc.isMoving = false;
     }
-    
+    */
 }

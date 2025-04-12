@@ -35,6 +35,8 @@ public class CharacterMovement : MonoBehaviour
     
     public StateManager stateManager;
     
+    [FormerlySerializedAs("soundLayerMask")] [SerializeField] LayerMask playerLayerMask;
+    
     [SerializeField] SoundFXSO footStepSound;
     [SerializeField] private GameObject hearing;
     
@@ -105,6 +107,7 @@ public class CharacterMovement : MonoBehaviour
                 case(AIState.wandering):
                     if (!hasPath || npcPath.Count == 0)
                     { 
+                        npcPath.Clear(); // We need to clear the path if we are wandering and have hit another ally
                         Pathfinder.S.CreatePath(this, PickAPoint());  
                         npcPath.AddRange(Pathfinder.S.pathPoints); 
                     }
@@ -113,6 +116,7 @@ public class CharacterMovement : MonoBehaviour
                 case(AIState.investigating):
                     if (!hasPath || npcPath.Count == 0)
                     {
+                        npcPath.Clear();
                         Pathfinder.S.CreatePath(this, new Vector3(0, 0.5f, 0));
                         npcPath.AddRange(Pathfinder.S.pathPoints);
                     }
@@ -131,7 +135,7 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector3 PickAPoint()
     {
-        npcPath.Clear(); // We need to clear the path if we are wandering and have hit another ally
+        
         // This needs to be rewritten to only grab points that are in rooms!
         float xPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeWidth);
         float yPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeHeight);
@@ -257,7 +261,11 @@ public class CharacterMovement : MonoBehaviour
             TurnManager.S.EndTurn();
             return;
         }
-        if (!Physics.Linecast(transform.position, newPos, out RaycastHit hit))
+        
+        
+        
+        // Checks for walls
+        if (!Physics.Linecast(transform.position, newPos, playerLayerMask, QueryTriggerInteraction.Ignore))
         {
             SoundFXManager.S.PlaySoundFXClip(footStepSound, hearing);
             StartCoroutine(MoveTowardsTarget(directionV3));
