@@ -9,6 +9,13 @@ public class InvestigateState : State
             thisState = AIState.chasing;
             return chaseState;
         }
+        if (transform.position == investigatePos)
+        {
+            print("returning to wander");
+            thisState = AIState.wandering;
+            wanderState.heardSomething = false;
+            return wanderState; 
+        }
         else
         {
             thisState = AIState.investigating;

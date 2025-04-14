@@ -15,6 +15,7 @@ public class WanderState : State
         if (heardSomething)
         {
             thisState = AIState.investigating;
+            investigateState.investigatePos = investigatePos;
             return investigateState;
         }
         else

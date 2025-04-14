@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3095986999978623242}
   - component: {fileID: 5357927252833211251}
-  - component: {fileID: 9140275385474640521}
   - component: {fileID: 4597605445998836938}
   - component: {fileID: 1517604371790699655}
   - component: {fileID: 6480201351971673504}
@@ -61,28 +60,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &9140275385474640521
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 83076903148079616}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 25fa8c37c4f763445a94b91d409f4f4c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4597605445998836938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +77,9 @@ MonoBehaviour:
   costToChangePath: 5
   rend: {fileID: 2052099816891364556}
   stateManager: {fileID: 6480201351971673504}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   footStepSound: {fileID: 11400000, guid: bfa6903dc736758458c2b4f9fd62bb0c, type: 2}
   hearing: {fileID: 461654107735172137}
   movementDelay: 0.5
@@ -120,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
-  teamNumber: 2
+  teamNumber: 1
   currentHealth: 1
 --- !u!114 &6480201351971673504
 MonoBehaviour:
@@ -147,7 +127,6 @@ GameObject:
   - component: {fileID: 5084416101340454651}
   - component: {fileID: 4062684530069505318}
   - component: {fileID: 5019368261936569764}
-  - component: {fileID: 2434291489571939096}
   m_Layer: 7
   m_Name: LOS and Hearing
   m_TagString: Untagged
@@ -187,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yOffset: -0.5
-  distance: 7
+  distance: 500
   angle: 5.1
   height: 0.5
   meshColor: {r: 0, g: 0, b: 1, a: 0.59607846}
@@ -218,20 +197,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6.05
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2434291489571939096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461654107735172137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5459af865b4ff34dbf5e0da578d0165, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4073414485625640058
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +250,8 @@ MonoBehaviour:
   attackState: {fileID: 4395020813421343663}
   wanderState: {fileID: 2337915910618874675}
   investigateState: {fileID: 7684560276159085099}
+  heardSomething: 0
+  investigatePos: {x: 0, y: 0, z: 0}
 --- !u!1 &4652774750605994859
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +389,8 @@ MonoBehaviour:
   attackState: {fileID: 4395020813421343663}
   wanderState: {fileID: 2337915910618874675}
   investigateState: {fileID: 7684560276159085099}
+  heardSomething: 0
+  investigatePos: {x: 0, y: 0, z: 0}
   isInRange: 0
 --- !u!1 &7365942258664724702
 GameObject:
@@ -472,6 +443,8 @@ MonoBehaviour:
   attackState: {fileID: 4395020813421343663}
   wanderState: {fileID: 2337915910618874675}
   investigateState: {fileID: 7684560276159085099}
+  heardSomething: 0
+  investigatePos: {x: 0, y: 0, z: 0}
   isInRange: 0
 --- !u!1 &9128955977196762100
 GameObject:
@@ -524,3 +497,5 @@ MonoBehaviour:
   attackState: {fileID: 4395020813421343663}
   wanderState: {fileID: 2337915910618874675}
   investigateState: {fileID: 7684560276159085099}
+  heardSomething: 0
+  investigatePos: {x: 0, y: 0, z: 0}

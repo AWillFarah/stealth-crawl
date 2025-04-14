@@ -15,4 +15,4 @@ MonoBehaviour:
   sound: {fileID: 8300000, guid: 42cc93bc291aa3e49a6cf02869e36317, type: 3}
   pitchMin: 0
   pitchMax: 0
-  noiseRadius: 10
+  noiseRadius: 0.1

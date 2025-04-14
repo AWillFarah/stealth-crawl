@@ -238,6 +238,9 @@ MonoBehaviour:
   costToChangePath: 5
   rend: {fileID: 7880190409636368741}
   stateManager: {fileID: 0}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   footStepSound: {fileID: 11400000, guid: bfa6903dc736758458c2b4f9fd62bb0c, type: 2}
   hearing: {fileID: 867744648646002031}
   movementDelay: 0.2

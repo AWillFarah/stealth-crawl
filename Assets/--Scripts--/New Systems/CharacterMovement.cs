@@ -50,7 +50,6 @@ public class CharacterMovement : MonoBehaviour
     private float oldPathCost;
 
     [HideInInspector] public bool hasPath;
-    private Vector3 pathDestination;
     
     public Transform target;
     
@@ -107,19 +106,13 @@ public class CharacterMovement : MonoBehaviour
                 case(AIState.wandering):
                     if (!hasPath || npcPath.Count == 0)
                     { 
-                        npcPath.Clear(); // We need to clear the path if we are wandering and have hit another ally
-                        Pathfinder.S.CreatePath(this, PickAPoint());  
-                        npcPath.AddRange(Pathfinder.S.pathPoints); 
+                        Refresh(PickAPoint()); 
                     }
                     NPCMovement();
                     break;
                 case(AIState.investigating):
-                    if (!hasPath || npcPath.Count == 0)
-                    {
-                        npcPath.Clear();
-                        Pathfinder.S.CreatePath(this, new Vector3(0, 0.5f, 0));
-                        npcPath.AddRange(Pathfinder.S.pathPoints);
-                    }
+                    // This will remain constant so we should be fine with just running it once
+                    Refresh(stateManager.currentState.investigatePos);
                     NPCMovement();
                     break;
                 case(AIState.chasing):
@@ -133,13 +126,20 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    private void Refresh(Vector3 destination)
+    {
+        npcPath.Clear(); // We need to clear the path if we are wandering and have hit another ally
+        Pathfinder.S.CreatePath(this, destination);  
+        npcPath.AddRange(Pathfinder.S.pathPoints);
+        hasPath = true;
+    }
+    
     private Vector3 PickAPoint()
     {
         
         // This needs to be rewritten to only grab points that are in rooms!
         float xPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeWidth);
         float yPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeHeight);
-        pathDestination = new Vector3(xPoint, 0.5f, yPoint);
         
         return new Vector3(xPoint, 0.5f, yPoint);
     }
@@ -231,7 +231,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 newPos = new Vector3(myX + dirX, 0.5f, myZ + dirz);
         transform.LookAt(newPos);
         // Let's check if this position is already occupied before we move
-        if (Pathfinder.S.isPositionOccupied(newPos))
+        if (Pathfinder.S.IsPositionOccupied(newPos))
         {
             // Need to avoid characters getting stuck on each other while wandering
             if(stateManager.currentAIState == AIState.wandering) hasPath = false;
@@ -256,7 +256,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 newPos = new Vector3(myX + dirX, 0.5f, myZ + dirz);
         transform.LookAt(newPos);
         // If the position is taken up then just skip your turn
-        if (Pathfinder.S.isPositionOccupied(newPos))
+        if (Pathfinder.S.IsPositionOccupied(newPos))
         {
             TurnManager.S.EndTurn();
             return;

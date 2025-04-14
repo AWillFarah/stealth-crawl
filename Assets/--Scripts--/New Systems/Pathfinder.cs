@@ -66,7 +66,7 @@ public class Pathfinder : MonoBehaviour
         
     }
 
-    public bool isPositionOccupied(Vector3 pos)
+    public bool IsPositionOccupied(Vector3 pos)
     {
         occupiedPositions.Clear();
         GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");

@@ -60,11 +60,8 @@ public class SoundFXManager : MonoBehaviour
                 // We dont want team members hearing each other
                 if(cBM1.teamNumber != cBM2.teamNumber)
                 {
-                    
-                    
                     State npcState = obj.GetComponentInParent<StateManager>().currentState;
-                    npcState.heardNoise();
-                    print(npcState);
+                    npcState.heardNoise(audioSource.transform.position);
                 }
                 
             }

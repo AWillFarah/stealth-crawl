@@ -17,9 +17,10 @@ public abstract class State : MonoBehaviour
     public AttackState attackState;
     public WanderState wanderState;
     public InvestigateState investigateState;
-
+    
     [Header("Dyanmic")] 
     public bool heardSomething;
+    public Vector3 investigatePos;
     
     void Start()
     {
@@ -43,9 +44,10 @@ public abstract class State : MonoBehaviour
         
     }
 
-    public void heardNoise()
+    public void heardNoise(Vector3 pos)
     {
       heardSomething = true;  
+      investigatePos = new Vector3(pos.x, 0.5f, pos.z);
     }
     
     

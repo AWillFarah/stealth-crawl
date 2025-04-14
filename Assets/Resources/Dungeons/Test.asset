@@ -15,7 +15,7 @@ MonoBehaviour:
   dungeonName: Test
   wallMaterial: {fileID: 2100000, guid: 01498acadadac8642a3723191fa5fd53, type: 2}
   floorMaterial: {fileID: -876546973899608171, guid: 570f23531ef54864fac17207c23f4bf2, type: 3}
-  dungeonSize: 20
+  dungeonSize: 5
   roomCount: 2
   roomXSizeMin: 1
   roomXSizeMax: 1
