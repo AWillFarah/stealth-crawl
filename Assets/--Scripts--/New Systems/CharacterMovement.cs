@@ -75,24 +75,24 @@ public class CharacterMovement : MonoBehaviour
             bool attack = playerControls.Player.Attack.ReadValue<float>() > 0;
             bool turn = playerControls.Player.Turn.ReadValue<float>() > 0;
             Vector2Int directionInt = Vector2Int.RoundToInt(move);
-            
+            Vector3 directionV3 = new Vector3(directionInt.x, 0.5f, directionInt.y);
             if (directionInt != Vector2.zero && !turn)
             {
                  // Converting to vector 3
-                 Vector3 directionV3 = new Vector3(directionInt.x, 0, directionInt.y);
+                
                  isMoving = true;
                  PlayerMovement(directionV3);
             }
             else if (directionInt != Vector2.zero && turn)
             {
-                Vector3 directionV3 = new Vector3(transform.position.x + directionInt.x, 0.5f, transform.position.z + directionInt.y);
+                directionV3 = new Vector3(transform.position.x + directionInt.x, 0.5f, transform.position.z + directionInt.y);
                 transform.LookAt(directionV3);
                 
             }
 
             if (attack && !isMoving)
             {
-                characterBattleManager.Attack();
+                characterBattleManager.Attack(directionV3);
                 isMoving = true;
             }
             
@@ -121,6 +121,8 @@ public class CharacterMovement : MonoBehaviour
                     NPCMovement();
                     break;
                 case(AIState.attacking):
+                    characterBattleManager.Attack(transform.forward);
+                    isMoving = true;
                     break;
             }
         }
@@ -290,13 +292,13 @@ public class CharacterMovement : MonoBehaviour
         
         Vector3 newPos = new Vector3(myX + dirX, 0.5f, myZ + dirz);
         
-        if (!rend.isVisible) movementDelay = 0.001f;
+        if (!rend.isVisible) movementDelay = 0.05f;
         else movementDelay = defaultMovementDelay;
         
         float elapsedTime = 0;
         while (elapsedTime < movementDelay)
         {
-            transform.position=Vector3.Lerp(transform.position , newPos,(elapsedTime / movementDelay));
+            transform.position = Vector3.Lerp(transform.position , newPos,(elapsedTime / movementDelay));
             elapsedTime += Time.deltaTime;
                     
             yield return null;

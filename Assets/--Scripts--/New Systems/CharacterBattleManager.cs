@@ -9,21 +9,24 @@ public class CharacterBattleManager : MonoBehaviour
     public int teamNumber = 0;
     
     [Header("Dynamic")]
-    private int maxHealth = 100;
-    public int currentHealth;
+    private int maxHealth = 1;
+    private int currentHealth;
 
+    [SerializeField] private SoundFXSO attackSFX;
+    
     void Start()
     {
         if (stats != null) currentHealth = maxHealth = stats.health;
+        else Debug.LogError("Error! Stats are not set for: " + gameObject.name);
     }
     
-    public void Attack()
+    public void Attack(Vector3 direction)
     {
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, 1.41f) )
+        SoundFXManager.S.PlaySoundFXClip(attackSFX, gameObject);
+        if(Physics.Raycast(transform.position, direction, out RaycastHit hit, 1.41f) )
         {
-            print("attacking");
             CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();
-            cBM.currentHealth -= 10;
+            if(cBM != null) cBM.currentHealth -= stats.attack;
         }
         
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.yellow, 2f);

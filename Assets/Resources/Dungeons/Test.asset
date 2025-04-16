@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   dungeonName: Test
-  wallMaterial: {fileID: 2100000, guid: 01498acadadac8642a3723191fa5fd53, type: 2}
-  floorMaterial: {fileID: 2100000, guid: 426278482c5bb014a9a503de102a7fd1, type: 2}
-  dungeonSize: 5
-  roomCount: 2
+  wallMaterial: {fileID: 2100000, guid: 7c17b19c9ab9aad4cbe9f6d32460be9c, type: 2}
+  floorMaterial: {fileID: 2100000, guid: 94fa92db985bc194da03719a4eb77457, type: 2}
+  dungeonSize: 20
+  roomCount: 6
   roomXSizeMin: 1
-  roomXSizeMax: 1
+  roomXSizeMax: 5
   roomYSizeMin: 1
-  roomYSizeMax: 1
+  roomYSizeMax: 5
+  numOfNPCS: 5
+  npcs:
+  - {fileID: 6725292171350672521, guid: 84f9be9752559ec48953553d7d92524d, type: 3}
+  - {fileID: 548940192315082621, guid: 2c3ce963c2e951644a0cd195e4608fda, type: 3}

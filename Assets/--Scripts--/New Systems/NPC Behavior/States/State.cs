@@ -10,7 +10,7 @@ public abstract class State : MonoBehaviour
     [Header("Inscribed")]
     [HideInInspector] public LineOfSight lOS;
     private CharacterBattleManager cBM;
-    [SerializeField] CharacterMovement cM;
+    public CharacterMovement cM;
     
     [HideInInspector] public AIState thisState;
     public ChaseState chaseState;

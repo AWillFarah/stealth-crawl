@@ -82,11 +82,19 @@ public class MazeRendererRooms : MonoBehaviour
         
         //Room playerSpawmRoom = GetRoom();
         tile = GetSpawnPosition();
-        GameObject newPlayer = Instantiate(player, new Vector3(tile.x, 0.5f, tile.y), Quaternion.identity, transform);
+        Instantiate(player, new Vector3(tile.x, 0.5f, tile.y), Quaternion.identity, transform);
+
+        for (int i = 0; i < mazeGenerator.dungeon.numOfNPCS; i++)
+        {
+            tile = GetSpawnPosition();
+            GameObject npc = mazeGenerator.dungeon.npcs[Random.Range(0, mazeGenerator.dungeon.npcs.Length)];
+            Instantiate(npc, new Vector3(tile.x, 0.5f, tile.y), Quaternion.identity, transform);
+        }
         
+        /*
         GameObject cam = Camera.main.gameObject;
         CameraMovement camMovement = cam.GetComponent<CameraMovement>();
-        camMovement.FindPlayer(newPlayer);
+        camMovement.FindPlayer(newPlayer); */
     }
 
     public Vector2Int GetSpawnPosition()

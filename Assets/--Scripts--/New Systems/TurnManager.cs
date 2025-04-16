@@ -17,6 +17,17 @@ public class TurnManager : MonoBehaviour
         StartTurn(turnOrder[0]);
     }
 
+    void Update()
+    {
+        foreach (GameObject npc in turnOrder)
+        {
+            if (npc == null)
+            {
+                turnOrder.Remove(npc);
+            }
+        }
+    }
+    
     void QueueTurns()
     {
         GameObject[] tempArray = GameObject.FindGameObjectsWithTag("Character");

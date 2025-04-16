@@ -185,7 +185,7 @@ public class LineOfSight : MonoBehaviour
         //Gizmos.DrawWireSphere(transform.position, distance);
         for (int i = 0; i < count; ++i)
         {
-            Gizmos.DrawSphere(colliders[i].transform.position, .1f);
+            if(colliders[i] != null) Gizmos.DrawSphere(colliders[i].transform.position, .1f);
             Gizmos.DrawLine(transform.position, colliders[i].transform.position);
         }
         

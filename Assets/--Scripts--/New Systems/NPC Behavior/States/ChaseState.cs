@@ -12,6 +12,12 @@ public class ChaseState : State
             thisState = AIState.attacking;
             return attackState; 
         }
+
+        if (cM.target == null)
+        {
+            thisState = AIState.wandering;
+            return wanderState;
+        }
         else
         {
             thisState = AIState.chasing;

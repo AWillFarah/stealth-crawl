@@ -19,7 +19,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     
-    void FixedUpdate()
+    void Update()
     {
         Follow();
         

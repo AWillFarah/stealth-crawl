@@ -7,8 +7,6 @@ public class SoundFXManager : MonoBehaviour
     public static SoundFXManager S;
 
     [SerializeField] private AudioSource soundFXObject;
-    [SerializeField, Range(-3,3)] public float minPitch;
-    [SerializeField, Range(-3,3)] public float maxPitch;
     
     public SoundFXSO soundFXSO;
     [SerializeField] Collider[] colliders = new Collider[50];
@@ -26,18 +24,31 @@ public class SoundFXManager : MonoBehaviour
 
     public void PlaySoundFXClip(SoundFXSO audioClip, GameObject spawnGO)
     {
-        
-        
         //spawn in gameObject
         AudioSource audioSource = Instantiate(soundFXObject, new Vector3(spawnGO.transform.position.x, 0.5f, spawnGO.transform.position.z), 
             Quaternion.identity);
         
-        //assign the audioClip
-        audioSource.clip = audioClip.sound;
+        
+        //assign the audioClip              
+        audioSource.clip = audioClip.sound; 
+        
+        //get length of sound FX clip                
+        float clipLength = audioSource.clip.length;  
+        
+        if (audioClip.vfx != null)
+        {
+            ParticleSystem vfx = Instantiate(audioClip.vfx, spawnGO.transform.position + transform.TransformDirection(Vector3.forward),
+                Quaternion.identity);
+            Destroy(vfx.gameObject, clipLength);
+        }
+        
+        
+       
+       
 
         //assign volume
-        audioSource.volume = 1;
-
+        audioSource.volume = audioClip.volume;
+        audioSource.pitch = Random.Range(audioClip.pitchMin, audioClip.pitchMax);
 
        
         //play sound
@@ -69,11 +80,11 @@ public class SoundFXManager : MonoBehaviour
         }
         
         
-        //get length of sound FX clip
-        float clipLength = audioSource.clip.length;
+        
 
         //destroy the clip after it is done playing
         Destroy(audioSource.gameObject, clipLength);
+        
     }
 
     public void PlayRandomSoundFXClip(AudioClip[] audioClip, Transform spawnTransform, float volume, bool changePitch)
@@ -94,8 +105,7 @@ public class SoundFXManager : MonoBehaviour
         //assign pitch if set to change
         if(changePitch == true)
         {
-            float randPitch = Random.Range(minPitch, maxPitch);
-            audioSource.pitch = randPitch;
+            
         }
         else
         {
