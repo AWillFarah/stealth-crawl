@@ -87,7 +87,6 @@ public class CharacterMovement : MonoBehaviour
             {
                 directionV3 = new Vector3(transform.position.x + directionInt.x, 0.5f, transform.position.z + directionInt.y);
                 transform.LookAt(directionV3);
-                
             }
 
             if (attack && !isMoving)

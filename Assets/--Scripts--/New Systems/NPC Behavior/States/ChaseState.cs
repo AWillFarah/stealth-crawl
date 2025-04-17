@@ -1,15 +1,17 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class ChaseState : State
 {
 
-    public bool isInRange;
     
+
     public override State RunCurrentState()
     {
-        if (isInRange)
+        if (isInRange())
         {
             thisState = AIState.attacking;
+            attackState.target = target;
             return attackState; 
         }
 

@@ -22,6 +22,8 @@ public abstract class State : MonoBehaviour
     public bool heardSomething;
     public Vector3 investigatePos;
     
+    public GameObject target;
+    
     void Start()
     {
         lOS = GetComponentInParent<LineOfSight>();
@@ -37,6 +39,7 @@ public abstract class State : MonoBehaviour
             if (c.teamNumber != cBM.teamNumber)
             {
                 cM.target = c.transform;
+                target = gO;
                 return true;
             }
         }
@@ -50,5 +53,20 @@ public abstract class State : MonoBehaviour
       investigatePos = new Vector3(pos.x, 0.5f, pos.z);
     }
     
-    
+    public bool isInRange()
+    {
+        for (int i = 0; i <= 8; i++)
+        {
+            if (Physics.Raycast(transform.position, (transform.forward) , out RaycastHit hit, 1.41f))
+            {
+                CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();
+                if (cBM != null)
+                {
+                    return true; 
+                }
+                
+            }
+        }
+        return false;
+    }
 }

@@ -37,7 +37,7 @@ public class SoundFXManager : MonoBehaviour
         
         if (audioClip.vfx != null)
         {
-            ParticleSystem vfx = Instantiate(audioClip.vfx, spawnGO.transform.position + transform.TransformDirection(Vector3.forward),
+            ParticleSystem vfx = Instantiate(audioClip.vfx, spawnGO.transform.position + spawnGO.transform.forward,
                 Quaternion.identity);
             Destroy(vfx.gameObject, clipLength);
         }

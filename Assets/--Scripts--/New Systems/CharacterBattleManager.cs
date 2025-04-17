@@ -23,13 +23,13 @@ public class CharacterBattleManager : MonoBehaviour
     public void Attack(Vector3 direction)
     {
         SoundFXManager.S.PlaySoundFXClip(attackSFX, gameObject);
-        if(Physics.Raycast(transform.position, direction, out RaycastHit hit, 1.41f) )
+        if(Physics.Raycast(transform.position, (transform.forward), out RaycastHit hit, 1.41f) )
         {
             CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();
             if(cBM != null) cBM.currentHealth -= stats.attack;
         }
         
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.yellow, 2f);
+        Debug.DrawRay(transform.position, direction, Color.yellow, 2f);
         TurnManager.S.Invoke("EndTurn", 0.1f);
     }
 

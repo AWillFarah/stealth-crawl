@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   sound: {fileID: 8300000, guid: 1ab5c57d111eac44a905027e80d88016, type: 3}
+  vfx: {fileID: 7091106274628157746, guid: 2f8d703290db33b49b494bb37e1c8a0c, type: 3}
   pitchMin: 0.9
   pitchMax: 1.2
   volume: 1

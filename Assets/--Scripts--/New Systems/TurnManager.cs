@@ -19,12 +19,18 @@ public class TurnManager : MonoBehaviour
 
     void Update()
     {
+        List<GameObject> removeList = new List<GameObject>();
         foreach (GameObject npc in turnOrder)
         {
             if (npc == null)
             {
-                turnOrder.Remove(npc);
+                removeList.Add(npc);
             }
+        }
+
+        foreach (var obj in removeList)
+        {   
+            turnOrder.Remove(obj);   
         }
     }
     

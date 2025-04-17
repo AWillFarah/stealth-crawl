@@ -17,9 +17,9 @@ MonoBehaviour:
   floorMaterial: {fileID: 2100000, guid: 94fa92db985bc194da03719a4eb77457, type: 2}
   dungeonSize: 20
   roomCount: 6
-  roomXSizeMin: 1
+  roomXSizeMin: 2
   roomXSizeMax: 5
-  roomYSizeMin: 1
+  roomYSizeMin: 2
   roomYSizeMax: 5
   numOfNPCS: 5
   npcs:
