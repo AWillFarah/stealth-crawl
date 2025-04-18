@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Footstep
   m_EditorClassIdentifier: 
   sound: {fileID: 8300000, guid: d811c570f5c5b1c4984ba45811297006, type: 3}
+  vfx: {fileID: 0}
   pitchMin: 0.9
   pitchMax: 1.2
   volume: 0
-  noiseRadius: 0.01
+  noiseRadius: 0

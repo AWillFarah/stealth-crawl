@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yOffset: -0.5
   distance: 500
-  angle: 5.1
+  angle: 25
   height: 0.5
   meshColor: {r: 0, g: 0, b: 1, a: 0.59607846}
   scanFrequency: 30
@@ -252,6 +252,7 @@ MonoBehaviour:
   investigateState: {fileID: 7684560276159085099}
   heardSomething: 0
   investigatePos: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
 --- !u!1 &4942972979774462423
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +406,7 @@ MonoBehaviour:
   investigateState: {fileID: 7684560276159085099}
   heardSomething: 0
   investigatePos: {x: 0, y: 0, z: 0}
-  isInRange: 0
+  target: {fileID: 0}
 --- !u!1 &7365942258664724702
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +460,7 @@ MonoBehaviour:
   investigateState: {fileID: 7684560276159085099}
   heardSomething: 0
   investigatePos: {x: 0, y: 0, z: 0}
-  isInRange: 0
+  target: {fileID: 0}
 --- !u!1 &9128955977196762100
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,3 +514,4 @@ MonoBehaviour:
   investigateState: {fileID: 7684560276159085099}
   heardSomething: 0
   investigatePos: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}

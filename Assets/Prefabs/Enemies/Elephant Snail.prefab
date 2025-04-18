@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4062684530069505318, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: distance
-      value: 1.42
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4597605445998836938, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: defaultMovementDelay
@@ -74,7 +74,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5019368261936569764, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: m_Radius
-      value: 10
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084416101340454651, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084416101340454651, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084416101340454651, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8474001293421419778, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: m_Sprite

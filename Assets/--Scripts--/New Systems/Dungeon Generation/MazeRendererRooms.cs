@@ -78,7 +78,7 @@ public class MazeRendererRooms : MonoBehaviour
         
         //Room exitRoom = GetRoom();
         Vector2 tile = GetSpawnPosition();
-        Instantiate(exit, new Vector3(tile.x, -0.2f, tile.y), Quaternion.identity, transform);
+        Instantiate(exit, new Vector3(tile.x, -0.5f, tile.y), Quaternion.identity, transform);
         
         //Room playerSpawmRoom = GetRoom();
         tile = GetSpawnPosition();

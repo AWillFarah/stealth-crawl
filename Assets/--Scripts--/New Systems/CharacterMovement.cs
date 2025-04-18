@@ -35,7 +35,7 @@ public class CharacterMovement : MonoBehaviour
     
     public StateManager stateManager;
     
-    [FormerlySerializedAs("soundLayerMask")] [SerializeField] LayerMask playerLayerMask;
+    [SerializeField] LayerMask playerLayerMask;
     
     [SerializeField] SoundFXSO footStepSound;
     [SerializeField] private GameObject hearing;
@@ -115,9 +115,13 @@ public class CharacterMovement : MonoBehaviour
                     NPCMovement();
                     break;
                 case(AIState.chasing):
-                    Pathfinder.S.CreatePath(this, target.position);
-                    CostToChangePath();
-                    NPCMovement();
+                    if(target == null) TurnManager.S.EndTurn();
+                    else
+                    {
+                        Pathfinder.S.CreatePath(this, target.position);
+                        CostToChangePath();
+                        NPCMovement();   
+                    }
                     break;
                 case(AIState.attacking):
                     characterBattleManager.Attack(transform.forward);
@@ -240,7 +244,7 @@ public class CharacterMovement : MonoBehaviour
             return;
         }
         StartCoroutine(MoveTowardsTarget(directionV3));
-        SoundFXManager.S.PlaySoundFXClip(footStepSound, hearing);
+        
         isMoving = true;
     }
 
@@ -268,7 +272,7 @@ public class CharacterMovement : MonoBehaviour
         // Checks for walls
         if (!Physics.Linecast(transform.position, newPos, playerLayerMask, QueryTriggerInteraction.Ignore))
         {
-            SoundFXManager.S.PlaySoundFXClip(footStepSound, hearing);
+            
             StartCoroutine(MoveTowardsTarget(directionV3));
             
         }
@@ -286,10 +290,10 @@ public class CharacterMovement : MonoBehaviour
         float dirX = Mathf.RoundToInt(directionVector3.x);
         float dirz = Mathf.RoundToInt(directionVector3.z);
         
-        float myX = Mathf.RoundToInt(transform.position.x);
-        float myZ = Mathf.RoundToInt(transform.position.z);
+        // We need the origin pos for Lerping. Otherwise our origin for the Lerp will be constantly moving!
+        Vector3 originPos = transform.position;
         
-        Vector3 newPos = new Vector3(myX + dirX, 0.5f, myZ + dirz);
+        Vector3 newPos = new Vector3(originPos.x + dirX, 0.5f, originPos.z + dirz);
         
         if (!rend.isVisible) movementDelay = 0.05f;
         else movementDelay = defaultMovementDelay;
@@ -297,7 +301,7 @@ public class CharacterMovement : MonoBehaviour
         float elapsedTime = 0;
         while (elapsedTime < movementDelay)
         {
-            transform.position = Vector3.Lerp(transform.position , newPos,(elapsedTime / movementDelay));
+            transform.position = Vector3.Lerp(originPos , newPos,(elapsedTime / movementDelay));
             elapsedTime += Time.deltaTime;
                     
             yield return null;

@@ -9,8 +9,10 @@ public class Exit : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
+        // Get rid of the ground tile below you
+        if(other.tag == "Ground") Destroy(other.gameObject);
+        
         CharacterMovement c = other.gameObject.GetComponent<CharacterMovement>();
-        print("Exit");
         if (c != null)
         {
             if(c.characterType != characterType.player) return;
@@ -18,5 +20,7 @@ public class Exit : MonoBehaviour
             SceneManager.LoadScene("Maze");
             
         }
+        
+        
     }
 }

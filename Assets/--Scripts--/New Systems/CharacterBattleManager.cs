@@ -22,9 +22,10 @@ public class CharacterBattleManager : MonoBehaviour
     
     public void Attack(Vector3 direction)
     {
-        SoundFXManager.S.PlaySoundFXClip(attackSFX, gameObject);
+        
         if(Physics.Raycast(transform.position, (transform.forward), out RaycastHit hit, 1.41f) )
         {
+            SoundFXManager.S.PlaySoundFXClip(attackSFX, gameObject);
             CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();
             if(cBM != null) cBM.currentHealth -= stats.attack;
         }
