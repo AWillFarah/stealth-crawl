@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CharacterBattleManager : MonoBehaviour
+{
+    [Header("Inscribed")]
+    public StatSO stats;
+    public int teamNumber = 0;
+    
+    [Header("Dynamic")]
+    private int maxHealth = 1;
+    private int currentHealth;
+
+    [SerializeField] private SoundFXSO attackSFX;
+    
+    void Start()
+    {
+        if (stats != null) currentHealth = maxHealth = stats.health;
+        else Debug.LogError("Error! Stats are not set for: " + gameObject.name);
+    }
+    
+    public void Attack(Vector3 direction)
+    {
+        
+        if(Physics.Raycast(transform.position, (transform.forward), out RaycastHit hit, 1.41f) )
+        {
+            SoundFXManager.S.PlaySoundFXClip(attackSFX, gameObject);
+            CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();
+            if(cBM != null) cBM.TakeDamage(stats.attack - cBM.stats.defense);
+        }
+        
+        Debug.DrawRay(transform.position, direction, Color.yellow, 2f);
+        TurnManager.S.Invoke("EndTurn", 0.1f);
+    }
+
+    void TakeDamage(int damage)
+    {
+        if(damage <= 0) damage = 1;
+        currentHealth -= damage;
+    }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+}

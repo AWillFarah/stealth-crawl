@@ -2,7 +2,7 @@
 
 #### Author: *Replace this with your name*
 
-##### Modified: *2024-09-04*
+##### Modified: *2025-04-11*
 
 
 <br>
@@ -42,7 +42,7 @@
 **4. Did you receive help from anyone outside this class or from anyone in this class that is not in a group with you?**   
 
 > &nbsp;
-><i>(list their names and what they helped with)</i>   
+><i>HUGEEEE thank you to Caleb Flosky for giving me his modifications to the maze tutorial code that allows for rooms!</i>   
 > &nbsp;
  
 
@@ -60,6 +60,11 @@
 > &nbsp;
 ><i>State Machine https://www.youtube.com/watch?v=cnpJtheBLLY&t=33s&ab_channel=SebastianGraves    
 > LOS https://www.youtube.com/watch?v=znZXmmyBF-o    
+> Maze https://www.youtube.com/watch?v=TMOEYdV4Ot4    
+> Sound Manager https://www.youtube.com/watch?v=DU7cgVsU2rM    
+> Input Manager    
+> https://www.youtube.com/watch?v=T8fG0D2_V5M&ab_channel=OneWheelStudio    
+>     
 > </i>   
 > &nbsp;
  

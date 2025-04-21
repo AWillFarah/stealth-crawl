@@ -10,6 +10,8 @@ public class DungeonLoader : MonoBehaviour
     public void LoadDungeon(DungeonSO dungeon)
     {
         dungeonToLoad = dungeon;
+
+        Exit.floorsRemaining = dungeonToLoad.numOfFloors;
         SceneManager.LoadScene("Maze");
     }
 }

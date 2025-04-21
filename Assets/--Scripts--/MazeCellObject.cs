@@ -26,7 +26,6 @@ public class MazeCellObject : MonoBehaviour
         topActive = top;
         bottomWall.SetActive(bottom);
         bottomActive = bottom;
-        bottomActive = bottom;
         leftWall.SetActive(left);
         leftActive = left;
         rightWall.SetActive(right);

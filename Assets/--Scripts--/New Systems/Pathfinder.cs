@@ -93,45 +93,4 @@ public class Pathfinder : MonoBehaviour
         return false;
     }
     
-    
-    /*
-    public IEnumerator MoveTowardsTarget(Vector3 directionVector3, CharacterMovement npc)
-    {
-       
-        // We are getting the direction we want to move in + our current position
-        float dirX = Mathf.RoundToInt(directionVector3.x);
-        float dirz = Mathf.RoundToInt(directionVector3.z);
-        
-        float myX = Mathf.RoundToInt(npc.transform.position.x);
-        float myZ = Mathf.RoundToInt(npc.transform.position.z);
-        
-        Vector3 newPos = new Vector3(myX + dirX, 0.5f, myZ + dirz);
-        
-        //MeshRenderer rend = npc.gameObject.GetComponent<MeshRenderer>();
-        
-        //if (!rend.isVisible) npc.movementDelay = 0.001f;
-        npc.movementDelay = npc.defaultMovementDelay;
-        
-        float elapsedTime = 0;
-        while (elapsedTime < npc.movementDelay)
-        {
-            npc.transform.position=Vector3.Lerp(npc.transform.position , newPos,(elapsedTime / npc.movementDelay));
-            elapsedTime += Time.deltaTime;
-                    
-            yield return null;
-        }
-
-        if (transform.position == newPos)
-        {
-            float posX = Mathf.RoundToInt(npc.transform.position.x);
-            float posZ = Mathf.RoundToInt(npc.transform.position.z);
-
-            npc.transform.position = new Vector3(posX, 0.5f, posZ);
-        }
-
-        
-        
-        npc.isMoving = false;
-    }
-    */
 }

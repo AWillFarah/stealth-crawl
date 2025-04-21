@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Elephant Snail
   m_EditorClassIdentifier: 
   health: 3
-  attack: 1
-  defense: 1
+  attack: 2
+  defense: 2
   intelligence: 1
   willpower: 1

@@ -24,12 +24,12 @@ public class MazeGeneratorWithRooms : MonoBehaviour {
     public DungeonSO dungeon;
     
     [Range(5, 100)]
-    public int mazeWidth = 5, mazeHeight = 5;           // The dimensions of the maze.
-    public int startX, startY;                          // The position our algorithm will start from.
+    [HideInInspector] public int mazeWidth = 5, mazeHeight = 5;           // The dimensions of the maze.
+    [HideInInspector] public int startX, startY;                          // The position our algorithm will start from.
     MazeCellNew[,] maze;                                   // An array of maze cells representing the maze grid.
 
-    [Range(0, 10)] public int roomCount = 1;
-    [Range(2,20)] public int roomXSizeMin, roomXSizeMax, roomYSizeMin, roomYSizeMax = 5;
+    [HideInInspector] [Range(0, 10)] public int roomCount = 1;
+    [HideInInspector] [Range(2,20)] public int roomXSizeMin, roomXSizeMax, roomYSizeMin, roomYSizeMax = 5;
     Vector2Int currentCell;                             // The maze cell we are currently looking at.
 
     private List<string> _roomTypes;                     // all the room types

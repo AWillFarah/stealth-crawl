@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   health: 10
-  attack: 1
+  attack: 3
   defense: 1
   intelligence: 1
   willpower: 1
