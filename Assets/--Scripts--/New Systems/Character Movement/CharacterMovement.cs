@@ -8,14 +8,14 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore.Text;
 
-public enum characterType
+public enum CharacterType
 {
-    player, npc
+    Player, NPC
 }
 
-public enum npcState
+public enum NPCState
 {
-    attacking, chasing, changeWanderPoint, Investigating, Wandering
+    Attacking, Chasing, ChangeWanderPoint, Investigating, Wandering
 }
 
 /// <summary>
@@ -27,7 +27,7 @@ public class CharacterMovement : MonoBehaviour
     [Header("Inscribed")]
     public float defaultMovementDelay = 0.5f;
     private InputSystem_Actions playerControls;
-    public characterType characterType = characterType.npc;
+    public CharacterType characterType = CharacterType.NPC;
     
     [SerializeField] private float costToChangePath = 5;
     private CharacterBattleManager characterBattleManager;
@@ -40,6 +40,8 @@ public class CharacterMovement : MonoBehaviour
     
     [SerializeField] SoundFXSO footStepSound;
     [SerializeField] private GameObject hearing;
+    
+   
     
     [Header("Dynamic")]
     public float movementDelay = 0.5f;
@@ -57,9 +59,11 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         characterBattleManager = gameObject.GetComponent<CharacterBattleManager>();
-        // if (characterType != characterType.player) return;
-        // playerControls = new InputSystem_Actions();
-        // playerControls.Player.Enable();
+        if (characterType == CharacterType.Player)
+        {
+            characterBattleManager.isPlayer = true;
+            
+        }
     }
 
     private void OnEnable()
@@ -70,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
     public virtual void FixedUpdate()
     {
         if(isMoving) return; 
-        if (characterType == characterType.player)
+        if (characterType == CharacterType.Player)
         {
             Vector2 move = InputManager.INPUTACTIONS.Player.Move.ReadValue<Vector2>();
             bool attack = InputManager.INPUTACTIONS.Player.Attack.ReadValue<float>() > 0;
@@ -151,8 +155,8 @@ public class CharacterMovement : MonoBehaviour
     {
         
         // This needs to be rewritten to only grab points that are in rooms!
-        float xPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeWidth);
-        float yPoint = UnityEngine.Random.Range(0, MazeGeneratorWithRooms.S.mazeHeight);
+        float xPoint = UnityEngine.Random.Range(0, MazeGeneratorRooms.S.mazeWidth);
+        float yPoint = UnityEngine.Random.Range(0, MazeGeneratorRooms.S.mazeHeight);
         
         return new Vector3(xPoint, 0.5f, yPoint);
     }

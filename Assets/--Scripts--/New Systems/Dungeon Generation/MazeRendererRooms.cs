@@ -9,7 +9,7 @@ public class MazeRendererRooms : MonoBehaviour
 {
     
     [Header("Inscribed")]
-    [SerializeField] MazeGeneratorWithRooms mazeGenerator;
+    [SerializeField] MazeGeneratorRooms mazeGenerator;
     [SerializeField] GameObject MazeCellPrefab;
     Dictionary<Vector3Int, MazeCellObject> cells = new Dictionary<Vector3Int, MazeCellObject>();
     
@@ -83,7 +83,7 @@ public class MazeRendererRooms : MonoBehaviour
         //Room playerSpawmRoom = GetRoom();
         tile = GetSpawnPosition();
         Instantiate(player, new Vector3(tile.x, 0.5f, tile.y), Quaternion.identity, transform);
-
+        
         for (int i = 0; i < mazeGenerator.dungeon.numOfNPCS; i++)
         {
             tile = GetSpawnPosition();

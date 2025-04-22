@@ -16,13 +16,13 @@ MonoBehaviour:
   wallMaterial: {fileID: 2100000, guid: 7c17b19c9ab9aad4cbe9f6d32460be9c, type: 2}
   floorMaterial: {fileID: 2100000, guid: 94fa92db985bc194da03719a4eb77457, type: 2}
   dungeonSize: 20
-  roomCount: 1
-  roomXSizeMin: 19
-  roomXSizeMax: 19
-  roomYSizeMin: 19
-  roomYSizeMax: 19
+  roomCount: 10
+  roomXSizeMin: 1
+  roomXSizeMax: 1
+  roomYSizeMin: 1
+  roomYSizeMax: 1
   numOfFloors: 4
-  numOfNPCS: 20
+  numOfNPCS: 5
   npcs:
   - {fileID: 6725292171350672521, guid: 84f9be9752559ec48953553d7d92524d, type: 3}
   - {fileID: 548940192315082621, guid: 2c3ce963c2e951644a0cd195e4608fda, type: 3}

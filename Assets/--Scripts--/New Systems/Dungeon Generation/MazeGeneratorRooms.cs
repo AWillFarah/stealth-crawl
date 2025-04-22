@@ -17,10 +17,10 @@ using Random = UnityEngine.Random;
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀
 */
 
-public class MazeGeneratorWithRooms : MonoBehaviour {
+public class MazeGeneratorRooms : MonoBehaviour {
 
     
-    public static MazeGeneratorWithRooms S;
+    public static MazeGeneratorRooms S;
     public DungeonSO dungeon;
     
     [Range(5, 100)]

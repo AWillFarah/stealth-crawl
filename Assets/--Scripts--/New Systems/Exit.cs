@@ -20,14 +20,14 @@ public class Exit : MonoBehaviour
         CharacterMovement c = other.gameObject.GetComponent<CharacterMovement>();
         if (c != null)
         {
-            if(c.characterType != characterType.player) return;
+            if(c.characterType != CharacterType.Player) return;
             c.OnExit();
             
             // We need to check if there is another floor after us
             floorsRemaining--;
             if (floorsRemaining < 1)
             {
-                switch (MazeGeneratorWithRooms.S.dungeon.endFloor)
+                switch (MazeGeneratorRooms.S.dungeon.endFloor)
                 {
                     case(EndFloor.treasureRoom):
                     {
