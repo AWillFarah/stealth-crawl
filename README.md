@@ -42,7 +42,10 @@
 **4. Did you receive help from anyone outside this class or from anyone in this class that is not in a group with you?**   
 
 > &nbsp;
-><i>HUGEEEE thank you to Caleb Flosky for giving me his modifications to the maze tutorial code that allows for rooms!</i>   
+><i>HUGEEEE thank you to Caleb Flosky for giving me his modifications to the maze tutorial code that allows for rooms!    
+>     
+> I went to Jonathan Bergen a lot for advice as wekk     
+> </i>   
 > &nbsp;
  
 

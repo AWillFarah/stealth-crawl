@@ -5,8 +5,8 @@ using UnityEngine;
 public class TemplateItem : MonoBehaviour
 {
     [Header("Inscribed")]
-    public ItemType typeOfItem;
-    
+    public ItemSO itemSO;
+    public String itemName = "Test";
     
     public void Use()
     {
@@ -22,7 +22,7 @@ public class TemplateItem : MonoBehaviour
 
             if (characterMovement.characterType == CharacterType.Player)
             {
-               ItemManager.S.AddItem(this);
+               
                Destroy(gameObject);
             }
         }

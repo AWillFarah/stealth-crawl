@@ -28,8 +28,9 @@ MonoBehaviour:
     text: <i>(art, music, etc. Just tell us where you got it, link it here)</i>
   - heading: 4. Did you receive help from anyone outside this class or from anyone
       in this class that is not in a group with you?
-    text: <i>HUGEEEE thank you to Caleb Flosky for giving me his modifications to
-      the maze tutorial code that allows for rooms!</i>
+    text: "<i>HUGEEEE thank you to Caleb Flosky for giving me his modifications to
+      the maze tutorial code that allows for rooms!\n\nI went to Jonathan Bergen
+      a lot for advice as wekk\r \n</i>"
   - heading: 5. Did you get help from any AI Code Assistants?
     text: <i>(Including things like Chat-GPT, Copilot, etc. Tell us which .cs file
       to look in for the citation and describe what you learned)</i>

@@ -163,3 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b57fbab7b3638449b1870d606501ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryTemp: []
+  itemMenu: {fileID: 0}
+  itemButton: {fileID: 8220000758247102489, guid: 7673c66c03cd3bb4d882e6ffd3244722, type: 3}
