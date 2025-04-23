@@ -7,7 +7,7 @@ public class ItemSO : ScriptableObject
 {
    public string itemName;
    public Sprite sprite;
-   public SlotTag slotTag;
+   public TemplateItem itemPrefab;
    
    [Header("If the item can be equipped")]
    public GameObject equipmentPrefab;
