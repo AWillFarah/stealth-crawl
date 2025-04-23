@@ -26,8 +26,8 @@ public class InventorySlot : MonoBehaviour
     {
         if (thisItem != null)
         {
-            TemplateItem newItem = Instantiate(thisItem.itemPrefab, transform.position, Quaternion.identity);
-            newItem.Use();
+            GameObject newItem = Instantiate(thisItem.itemPrefab, transform.position, Quaternion.identity);
+            newItem.GetComponent<TemplateItem>().Use();
             thisItem = null;
             image.sprite = null;
             text.text = "";

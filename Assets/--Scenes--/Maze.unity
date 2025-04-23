@@ -869,7 +869,8 @@ PrefabInstance:
       value: Essentials
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6393544644059336616, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}

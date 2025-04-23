@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c412b8b1e34ecc4408a958e23179350e, type: 3}
-  m_Name: TestItem
+  m_Name: EvilPotion
   m_EditorClassIdentifier: 
   itemName: Test
   sprite: {fileID: 21300000, guid: 926a741650db0ca45b6717df13d0c125, type: 3}

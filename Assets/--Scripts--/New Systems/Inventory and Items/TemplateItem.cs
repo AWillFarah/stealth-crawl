@@ -2,17 +2,18 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class TemplateItem : MonoBehaviour
+public abstract class TemplateItem : MonoBehaviour
 {
     [Header("Inscribed")]
     public String itemName = "Test";
     public ItemSO itemSO;
     
     
-    public void Use()
+    public virtual void Use()
     {
         CharacterBattleManager.PLAYER.ChangeHealth(-1, false);
         Destroy(gameObject);
+        TurnManager.S.EndTurn();
     }
     
     
