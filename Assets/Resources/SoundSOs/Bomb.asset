@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b28e71d89383fd498e3c37ac60a9db9, type: 3}
-  m_Name: Attack
+  m_Name: Bomb
   m_EditorClassIdentifier: 
   sound: {fileID: 8300000, guid: 1ab5c57d111eac44a905027e80d88016, type: 3}
-  vfx: {fileID: 7091106274628157746, guid: 2f8d703290db33b49b494bb37e1c8a0c, type: 3}
-  pitchMin: 0.9
-  pitchMax: 1.2
-  volume: 1
+  vfx: {fileID: 5913292821399287527, guid: 2f8d703290db33b49b494bb37e1c8a0c, type: 3}
+  pitchMin: -1.05
+  pitchMax: -1.03
+  volume: 2
   noiseRadius: 5

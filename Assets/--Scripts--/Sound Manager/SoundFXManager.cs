@@ -37,7 +37,7 @@ public class SoundFXManager : MonoBehaviour
         
         if (audioClip.vfx != null)
         {
-            ParticleSystem vfx = Instantiate(audioClip.vfx, spawnGO.transform.position + spawnGO.transform.forward,
+            GameObject vfx = Instantiate(audioClip.vfx, spawnGO.transform.position + spawnGO.transform.forward,
                 Quaternion.identity);
             Destroy(vfx.gameObject, clipLength);
         }
@@ -69,6 +69,7 @@ public class SoundFXManager : MonoBehaviour
                 CharacterBattleManager cBM2 = obj.GetComponentInParent<CharacterBattleManager>();
                 
                 // We dont want team members hearing each other
+                if(cBM1 == null || cBM2 == null) return;
                 if(cBM1.teamNumber != cBM2.teamNumber)
                 {
                     State npcState = obj.GetComponentInParent<StateManager>().currentState;

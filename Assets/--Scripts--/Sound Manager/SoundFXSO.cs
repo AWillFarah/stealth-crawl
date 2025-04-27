@@ -6,13 +6,13 @@ public class SoundFXSO : ScriptableObject
   [Header("Inscribed")]
   public AudioClip sound;
 
-  public ParticleSystem vfx;
+  public GameObject vfx;
     
   [Range(-3f, 3f)]
   public float pitchMin = 1;
   [Range(-3f, 3f)]
   public float pitchMax = 1;
-  [Range(0f, 1f)]
+  [Range(0f, 2f)]
   public float volume = 1;
   
   [Header("Sound Detection")]

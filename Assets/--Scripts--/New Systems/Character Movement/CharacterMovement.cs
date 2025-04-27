@@ -10,7 +10,7 @@ using UnityEngine.TextCore.Text;
 
 public enum CharacterType
 {
-    Player, NPC
+    Player, NPC, Stationary
 }
 
 public enum NPCState
@@ -73,73 +73,77 @@ public class CharacterMovement : MonoBehaviour
     
     public virtual void FixedUpdate()
     {
-        if(isMoving) return; 
-        if (characterType == CharacterType.Player)
+        if(isMoving) return;
+        switch (characterType)
         {
-            Vector2 move = InputManager.INPUTACTIONS.Player.Move.ReadValue<Vector2>();
-            bool attack = InputManager.INPUTACTIONS.Player.Attack.ReadValue<float>() > 0;
-            bool turn = InputManager.INPUTACTIONS.Player.Turn.ReadValue<float>() > 0;
-            bool pause = InputManager.INPUTACTIONS.Player.Pause.ReadValue<float>() > 0;
+            case CharacterType.Player:
+                Vector2 move = InputManager.INPUTACTIONS.Player.Move.ReadValue<Vector2>();
+                bool attack = InputManager.INPUTACTIONS.Player.Attack.ReadValue<float>() > 0;
+                bool turn = InputManager.INPUTACTIONS.Player.Turn.ReadValue<float>() > 0;
+                bool pause = InputManager.INPUTACTIONS.Player.Pause.ReadValue<float>() > 0;
             
-            Vector2Int directionInt = Vector2Int.RoundToInt(move);
-            Vector3 directionV3 = new Vector3(directionInt.x, 0.5f, directionInt.y);
-            if (directionInt != Vector2.zero && !turn)
-            {
-                 // Converting to vector 3
+                Vector2Int directionInt = Vector2Int.RoundToInt(move);
+                Vector3 directionV3 = new Vector3(directionInt.x, 0.5f, directionInt.y);
+                if (directionInt != Vector2.zero && !turn)
+                {
+                    // Converting to vector 3
                 
-                 isMoving = true;
-                 PlayerMovement(directionV3);
-            }
-            else if (directionInt != Vector2.zero && turn)
-            {
-                directionV3 = new Vector3(transform.position.x + directionInt.x, 0.5f, transform.position.z + directionInt.y);
-                transform.LookAt(directionV3);
-            }
-
-            if (attack && !isMoving)
-            {
-                characterBattleManager.Attack(directionV3);
-                isMoving = true;
-            }
-
-            if (pause)
-            {
-                UIManager.S.TogglePauseMenu();
-                InputManager.TOGGLEACTIONMAP(InputManager.INPUTACTIONS.UI);
-            }
-        }
-        else
-        {
-            stateManager.CheckState();
-
-            switch (stateManager.currentAIState)
-            {
-                case(AIState.wandering):
-                    if (!hasPath || npcPath.Count == 0)
-                    { 
-                        Refresh(PickAPoint()); 
-                    }
-                    NPCMovement();
-                    break;
-                case(AIState.investigating):
-                    // This will remain constant so we should be fine with just running it once
-                    Refresh(stateManager.currentState.investigatePos);
-                    NPCMovement();
-                    break;
-                case(AIState.chasing):
-                    if(target == null) TurnManager.S.EndTurn();
-                    else
-                    {
-                        Pathfinder.S.CreatePath(this, target.position);
-                        CostToChangePath();
-                        NPCMovement();   
-                    }
-                    break;
-                case(AIState.attacking):
-                    characterBattleManager.Attack(transform.forward);
                     isMoving = true;
-                    break;
-            }
+                    PlayerMovement(directionV3);
+                }
+                else if (directionInt != Vector2.zero && turn)
+                {
+                    directionV3 = new Vector3(transform.position.x + directionInt.x, 0.5f, transform.position.z + directionInt.y);
+                    transform.LookAt(directionV3);
+                }
+
+                if (attack && !isMoving)
+                {
+                    characterBattleManager.Attack(directionV3);
+                    isMoving = true;
+                }
+
+                if (pause)
+                {
+                    UIManager.S.TogglePauseMenu();
+                    InputManager.TOGGLEACTIONMAP(InputManager.INPUTACTIONS.UI);
+                }
+                break;
+            case CharacterType.NPC:
+                stateManager.CheckState();
+
+                switch (stateManager.currentAIState)
+                {
+                    case(AIState.wandering):
+                        if (!hasPath || npcPath.Count == 0)
+                        { 
+                            Refresh(PickAPoint()); 
+                        }
+                        NPCMovement();
+                        break;
+                    case(AIState.investigating):
+                        // This will remain constant so we should be fine with just running it once
+                        Refresh(stateManager.currentState.investigatePos);
+                        NPCMovement();
+                        break;
+                    case(AIState.chasing):
+                        if(target == null) TurnManager.S.EndTurn();
+                        else
+                        {
+                            Pathfinder.S.CreatePath(this, target.position);
+                            CostToChangePath();
+                            NPCMovement();   
+                        }
+                        break;
+                    case(AIState.attacking):
+                        characterBattleManager.Attack(transform.forward);
+                        isMoving = true;
+                        break;
+                }
+                break;
+            case CharacterType.Stationary:
+                TurnManager.S.EndTurn();
+                break;
         }
     }
 
@@ -310,11 +314,20 @@ public class CharacterMovement : MonoBehaviour
         if (!rend.isVisible) movementDelay = 0.05f;
         else movementDelay = defaultMovementDelay;
         
+        // Because of the fact that an Enumerator only updates when resources are available
+        // We cannot use delta time! We instead need to make our own delta time
+        float lastTime = Time.time;
         float elapsedTime = 0;
+        
         while (elapsedTime < movementDelay)
         {
-            transform.position = Vector3.Lerp(originPos , newPos,(elapsedTime / movementDelay));
-            elapsedTime += Time.deltaTime;
+            float currTime = Time.time;
+            float deltaTime = currTime - lastTime;
+            
+            float u = Mathf.Clamp01(elapsedTime / movementDelay);
+            transform.position = Vector3.Lerp(originPos , newPos,(u));
+            lastTime = currTime;
+            elapsedTime += deltaTime;
                     
             yield return null;
         }

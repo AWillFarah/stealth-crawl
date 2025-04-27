@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &1672420865 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9087647217891410320, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
-  m_PrefabInstance: {fileID: 3832113407401193223}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b57fbab7b3638449b1870d606501ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1702768992
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,10 +381,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2095147389956385983, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2369640134186295900, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -635,26 +620,6 @@ PrefabInstance:
     - target: {fileID: 6618849350629529136, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6754052108087658258, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1672420865}
-    - target: {fileID: 6754052108087658258, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 6754052108087658258, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventoryManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6754052108087658258, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 5253946806995070545, guid: c248472aad164854792ed7e6a61f1edf, type: 3}
-    - target: {fileID: 6754052108087658258, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: TemplateItem, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6887005041692272789, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
       propertyPath: m_AnchorMax.y
@@ -869,8 +834,7 @@ PrefabInstance:
       value: Essentials
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6393544644059336616, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11e7201c7ff27824592c7581ed93d553, type: 3}

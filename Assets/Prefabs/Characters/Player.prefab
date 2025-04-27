@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27f23f50e8b7a844b737f0d6525a4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMovementDelay: 0.1
+  defaultMovementDelay: 0.05
   characterType: 0
   costToChangePath: 5
   rend: {fileID: 590871631131808449}
@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Bits: 8
   footStepSound: {fileID: 11400000, guid: bfa6903dc736758458c2b4f9fd62bb0c, type: 2}
   hearing: {fileID: 867744648646002031}
-  movementDelay: 0.1
+  movementDelay: 0.05
   npcPath: []
   isMoving: 0
   hasPath: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 5aeacf18e60792040b4e802f310c6a3b, type: 2}
   teamNumber: 0
-  isPlayer: 0
+  isPlayer: 1
   attackSFX: {fileID: 11400000, guid: 17f6b13bfdaa88740b1dfdfbfb9f6512, type: 2}
 --- !u!54 &7551171778561976388
 Rigidbody:

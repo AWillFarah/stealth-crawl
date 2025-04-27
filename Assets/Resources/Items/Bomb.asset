@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c412b8b1e34ecc4408a958e23179350e, type: 3}
-  m_Name: EvilPotion
+  m_Name: Bomb
   m_EditorClassIdentifier: 
-  itemName: Test
-  sprite: {fileID: 21300000, guid: 926a741650db0ca45b6717df13d0c125, type: 3}
-  itemPrefab: {fileID: 5362746847567638987, guid: c248472aad164854792ed7e6a61f1edf, type: 3}
+  itemName: Noise Maker
+  itemPrefab: {fileID: 9159963855082852893, guid: 5898d883718818349959ad9714a37915, type: 3}
+  sprite: {fileID: -2012186237, guid: 8c2becf638275844c85e2d5c7ada9413, type: 3}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
   equipmentPrefab: {fileID: 0}

@@ -2,18 +2,25 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public abstract class TemplateItem : MonoBehaviour
+public class TemplateItem : MonoBehaviour
 {
     [Header("Inscribed")]
     public String itemName = "Test";
     public ItemSO itemSO;
-    
+
+    public void Awake()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        itemName = itemSO.name;
+        spriteRenderer.sprite = itemSO.sprite;
+        spriteRenderer.color = itemSO.spriteColor;
+    }
     
     public virtual void Use()
     {
         CharacterBattleManager.PLAYER.ChangeHealth(-1, false);
-        Destroy(gameObject);
         TurnManager.S.EndTurn();
+        Destroy(gameObject);
     }
     
     

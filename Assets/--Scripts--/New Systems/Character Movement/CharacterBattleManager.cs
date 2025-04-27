@@ -12,7 +12,7 @@ public class CharacterBattleManager : MonoBehaviour
     [Header("Inscribed")]
     public StatSO stats;
     public int teamNumber = 0;
-    [HideInInspector] public bool isPlayer;
+    public bool isPlayer;
     public static CharacterBattleManager PLAYER;
     
     [Header("Dynamic")]
