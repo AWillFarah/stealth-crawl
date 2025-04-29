@@ -9,7 +9,7 @@ public abstract class State : MonoBehaviour
     
     [Header("Inscribed")]
     [HideInInspector] public LineOfSight lOS;
-    private CharacterBattleManager cBM;
+    [HideInInspector] public CharacterBattleManager cBM;
     public CharacterMovement cM;
     
     [HideInInspector] public AIState thisState;

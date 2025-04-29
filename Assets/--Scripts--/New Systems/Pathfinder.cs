@@ -21,7 +21,7 @@ public class Pathfinder : MonoBehaviour
     public List<Vector3> pathPoints = new List<Vector3>();
     public List<Vector3> occupiedPositions = new List<Vector3>();
     
-    private bool hasChosenPath = false;
+  
 
     
     void Start()

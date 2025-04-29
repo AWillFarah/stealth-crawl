@@ -47,7 +47,12 @@ public class CharacterBattleManager : MonoBehaviour
         {
             SoundFXManager.S.PlaySoundFXClip(attackSFX, gameObject);
             CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();
-            if(cBM != null) cBM.ChangeHealth(stats.attack - cBM.stats.defense);
+            if (cBM != null)
+            {
+                cBM.ChangeHealth(stats.attack - cBM.stats.defense);
+                MessageLogManager.S.AddMessageToLog((stats.name + " attacks " + cBM.stats.name + " for " + (stats.attack - cBM.stats.defense) + " damage!"));
+            }
+            
         }
         
         Debug.DrawRay(transform.position, direction, Color.yellow, 2f);

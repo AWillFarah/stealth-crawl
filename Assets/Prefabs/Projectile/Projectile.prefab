@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8350851151330222784}
   - component: {fileID: 6374410662499350647}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4440312330782593061}
   - component: {fileID: 7363097782786669816}
   - component: {fileID: 1142412459816183069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,3 +182,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb19a3b816bed0049b592888663b418c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterBattleManager: {fileID: 0}

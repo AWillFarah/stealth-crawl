@@ -24,6 +24,10 @@ public class DungeonSO : ScriptableObject
     [Range (0, 20)] public int numOfNPCS;
     public GameObject[] npcs;
     
+    [Header("Item Spawns")]
+    [Range (0, 20)] public int numOfItems;
+    public GameObject[] items;
+    
     [Header("End Room")]
     public EndFloor endFloor = EndFloor.treasureRoom;
 }

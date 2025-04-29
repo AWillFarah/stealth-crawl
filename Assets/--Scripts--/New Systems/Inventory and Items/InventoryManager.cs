@@ -21,7 +21,12 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] InventorySlot[] slots;
     void Awake()
     {
-        if(INVENTORY == null) INVENTORY = new List<ItemSO>();
+
+        if (INVENTORY == null)
+        {
+            INVENTORY = new List<ItemSO>();
+            INVENTORY.Capacity = slots.Length;
+        }
         
         // We need to make sure that our slots keep our items between floors
         
@@ -33,29 +38,36 @@ public class InventoryManager : MonoBehaviour
             }
         } 
         
+        print(INVENTORY.Capacity);
         if(S == null) S = this;
+        
+        
     } 
     
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-      debugList = INVENTORY;  
+       
+        debugList = INVENTORY;  
     }
     
     public void AddItem(ItemSO item)
     {
-        int slotIndex = 0;
-        foreach (InventorySlot slot in slots)
+        // If we have too many items then dont add any thing
+        if (INVENTORY.Count < INVENTORY.Capacity)
         {
-            if (slot.thisItem == null)
+            int slotIndex = 0;
+            foreach (InventorySlot slot in slots)
             {
-                slot.AddItemToInventory(item);
-                slot.slotNum = slotIndex;
+                if (slot.thisItem == null)
+                {
+                    slot.AddItemToInventory(item);
+                    slot.slotNum = slotIndex;
                 
-                break;
+                    break;
+                }
+                slotIndex++;
             }
-            slotIndex++;
         }
-        
     }
 }

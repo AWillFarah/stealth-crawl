@@ -30,7 +30,7 @@ MonoBehaviour:
       in this class that is not in a group with you?
     text: "<i>HUGEEEE thank you to Caleb Flosky for giving me his modifications to
       the maze tutorial code that allows for rooms!\n\nI went to Jonathan Bergen
-      a lot for advice as wekk\r \n</i>"
+      a lot for advice as well\r \n</i>"
   - heading: 5. Did you get help from any AI Code Assistants?
     text: <i>(Including things like Chat-GPT, Copilot, etc. Tell us which .cs file
       to look in for the citation and describe what you learned)</i>
@@ -49,6 +49,10 @@ MonoBehaviour:
 
       https://www.youtube.com/watch?v=T8fG0D2_V5M&ab_channel=OneWheelStudio
 
+      Scrolling
+      List
+
+      https://www.youtube.com/watch?v=rAqyi85IAJ0
 
       </i>'
   - heading: 7. What trouble did you have with this project?

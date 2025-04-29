@@ -5,6 +5,9 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Handles the placement on the maze cell objects as well as the placement of items, player, and npc
+/// </summary>
 public class MazeRendererRooms : MonoBehaviour
 {
     
@@ -83,6 +86,13 @@ public class MazeRendererRooms : MonoBehaviour
         //Room playerSpawmRoom = GetRoom();
         tile = GetSpawnPosition();
         Instantiate(player, new Vector3(tile.x, 0.5f, tile.y), Quaternion.identity, transform);
+        
+        for (int i = 0; i < mazeGenerator.dungeon.numOfItems; i++)
+        {
+            tile = GetSpawnPosition();
+            GameObject item = mazeGenerator.dungeon.items[Random.Range(0, mazeGenerator.dungeon.items.Length)];
+            Instantiate(item, new Vector3(tile.x, 0.5f, tile.y), Quaternion.identity, transform);
+        }
         
         for (int i = 0; i < mazeGenerator.dungeon.numOfNPCS; i++)
         {

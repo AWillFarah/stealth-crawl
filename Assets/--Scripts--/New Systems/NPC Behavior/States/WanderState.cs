@@ -16,6 +16,7 @@ public class WanderState : State
         {
             thisState = AIState.investigating;
             investigateState.investigatePos = investigatePos;
+            MessageLogManager.S.AddMessageToLog((cBM.stats.name + " heard something"));
             return investigateState;
         }
         else

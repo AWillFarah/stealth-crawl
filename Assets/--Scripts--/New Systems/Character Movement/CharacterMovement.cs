@@ -45,7 +45,6 @@ public class CharacterMovement : MonoBehaviour
     
     [Header("Dynamic")]
     public float movementDelay = 0.5f;
-    private bool validSpace = false;
     public List<Vector3> npcPath = new List<Vector3>();
     public bool isMoving = false; // Checking if we are already moving
     
@@ -314,7 +313,7 @@ public class CharacterMovement : MonoBehaviour
         if (!rend.isVisible) movementDelay = 0.05f;
         else movementDelay = defaultMovementDelay;
         
-        // Because of the fact that an Enumerator only updates when resources are available
+        // Because an Enumerator only updates when resources are available
         // We cannot use delta time! We instead need to make our own delta time
         float lastTime = Time.time;
         float elapsedTime = 0;

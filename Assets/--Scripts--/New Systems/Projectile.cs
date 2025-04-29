@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     private SoundFXSO sfxVfx;
     private Rigidbody rb;
     private SpriteRenderer sr;
-    
+    [SerializeField] CharacterBattleManager characterBattleManager; // This needs a cBM for damage calculations!
     
     void Awake()
     {
@@ -31,6 +31,17 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
        SoundFXManager.S.PlaySoundFXClip(sfxVfx, gameObject);
-       Destroy(this.gameObject);
+       print(characterBattleManager);
+       // If we dont have a cBM set this will be ignored! Useful for projectiles such as noise makers
+       CharacterBattleManager cBMOther = other.gameObject.GetComponent<CharacterBattleManager>();
+       if (characterBattleManager != null && cBMOther != null)
+       {
+           cBMOther.ChangeHealth(characterBattleManager.stats.attack - cBMOther.stats.defense);
+           MessageLogManager.S.AddMessageToLog(cBMOther.stats.name + " takes " + 
+                                               (characterBattleManager.stats.attack - cBMOther.stats.defense) + 
+                                               " damage!");
+       }
+       TurnManager.S.EndTurn();
+       Destroy(gameObject);
     }
 }

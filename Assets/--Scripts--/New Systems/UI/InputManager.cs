@@ -7,7 +7,6 @@ public class InputManager : MonoBehaviour
     public static InputSystem_Actions INPUTACTIONS;
     public static event Action<InputActionMap> ACTIONMAPCHANGE;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         INPUTACTIONS = new InputSystem_Actions();

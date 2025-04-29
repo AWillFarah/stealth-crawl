@@ -55,10 +55,14 @@ public class TurnManager : MonoBehaviour
     {
         GameObject character = turnOrder[0];
         // I realllllyyy wanna be sure they're in the right spot because ive been getting some rounding errors
-        character.transform.position = new Vector3(Mathf.RoundToInt(character.transform.position.x), 0.5f, 
-        Mathf.RoundToInt(character.transform.position.z));
+        if (character != null)
+        {
+            character.transform.position = new Vector3(Mathf.RoundToInt(character.transform.position.x), 0.5f, 
+                Mathf.RoundToInt(character.transform.position.z));
         
-        character.GetComponent<CharacterMovement>().enabled = false;
+            character.GetComponent<CharacterMovement>().enabled = false; 
+        }
+        
 
         turnOrder.RemoveAt(0);
         if (turnOrder.Count <= 0) QueueTurns();

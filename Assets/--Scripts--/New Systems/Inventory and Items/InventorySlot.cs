@@ -8,7 +8,7 @@ public class InventorySlot : MonoBehaviour
     Sprite sprite;
     public Image image;
     TMP_Text text;
-    [HideInInspector] public int slotNum; //This will tell us which inventory 
+    [HideInInspector] public int slotNum; //This will tell us which inventory slot we are
 
     void Awake()
     {
@@ -17,9 +17,10 @@ public class InventorySlot : MonoBehaviour
 
     public void AddItemToInventory(ItemSO item)
     { 
+        if(item == null) return;
         thisItem = item;
-        image.sprite = item.sprite;
-        text.text = item.itemName;
+        image.sprite = thisItem.sprite;
+        text.text = thisItem.itemName;
     }
     
     public void UseItem()

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c412b8b1e34ecc4408a958e23179350e, type: 3}
-  m_Name: Bomb
+  m_Name: Arrow
   m_EditorClassIdentifier: 
-  itemName: Bomb
-  itemPrefab: {fileID: 9159963855082852893, guid: 5898d883718818349959ad9714a37915, type: 3}
-  sprite: {fileID: -2012186237, guid: 8c2becf638275844c85e2d5c7ada9413, type: 3}
+  itemName: Arrow
+  itemPrefab: {fileID: 8115112538939296849, guid: 547b470c716529748836bff4707cef08, type: 3}
+  sprite: {fileID: -1331248847, guid: 8c2becf638275844c85e2d5c7ada9413, type: 3}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
   equipmentPrefab: {fileID: 0}
