@@ -10,27 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d031e7837ade87245a210c85b5b8460d, type: 3}
-  m_Name: Castle
+  m_Name: HedgeMaze
   m_EditorClassIdentifier: 
-  dungeonName: Castrle
-  wallMaterial: {fileID: 2100000, guid: 8716082bf9fa1fd408f063bcde1c74a0, type: 2}
-  floorMaterial: {fileID: 2100000, guid: 74c73d7e8a31a3d439152a0b612f745b, type: 2}
-  dungeonSize: 20
-  roomCount: 4
-  roomXSizeMin: 8
-  roomXSizeMax: 4
-  roomYSizeMin: 4
-  roomYSizeMax: 8
-  numOfFloors: 4
-  numOfNPCS: 6
+  dungeonName: Hedge Maze
+  wallMaterial: {fileID: 2100000, guid: 94fa92db985bc194da03719a4eb77457, type: 2}
+  floorMaterial: {fileID: 2100000, guid: fa2758e6793972b43aba6b4c97ab2524, type: 2}
+  dungeonSize: 40
+  roomCount: 30
+  roomXSizeMin: 1
+  roomXSizeMax: 1
+  roomYSizeMin: 1
+  roomYSizeMax: 1
+  numOfFloors: 2
+  numOfNPCS: 8
   npcs:
   - {fileID: 6725292171350672521, guid: 84f9be9752559ec48953553d7d92524d, type: 3}
   - {fileID: 7210179085396999893, guid: 52e68628c232c7544a5ed5cce3bb237d, type: 3}
-  - {fileID: 7210179085396999893, guid: 52e68628c232c7544a5ed5cce3bb237d, type: 3}
+  - {fileID: 548940192315082621, guid: 2c3ce963c2e951644a0cd195e4608fda, type: 3}
   - {fileID: 7993158205084016563, guid: ebe7756f0c08cee4d991f7c146229705, type: 3}
-  - {fileID: 7993158205084016563, guid: ebe7756f0c08cee4d991f7c146229705, type: 3}
-  - {fileID: 7993158205084016563, guid: ebe7756f0c08cee4d991f7c146229705, type: 3}
-  numOfItems: 4
+  numOfItems: 8
   items:
   - {fileID: 8115112538939296849, guid: 547b470c716529748836bff4707cef08, type: 3}
   - {fileID: 8115112538939296849, guid: 547b470c716529748836bff4707cef08, type: 3}

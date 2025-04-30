@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 17f6b13bfdaa88740b1dfdfbfb9f6512, type: 2}
     - target: {fileID: 1517604371790699655, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: teamNumber
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3095986999978623242, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -65,8 +65,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4062684530069505318, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
+      propertyPath: angle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062684530069505318, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: distance
-      value: 1.4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4597605445998836938, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: defaultMovementDelay

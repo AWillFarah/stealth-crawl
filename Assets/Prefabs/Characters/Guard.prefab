@@ -97,7 +97,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 83076903148079616, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: m_Name
-      value: Guard Variant
+      value: Guard
       objectReference: {fileID: 0}
     - target: {fileID: 1517604371790699655, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: stats
@@ -142,6 +142,14 @@ PrefabInstance:
     - target: {fileID: 3095986999978623242, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062684530069505318, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
+      propertyPath: angle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062684530069505318, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
+      propertyPath: distance
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

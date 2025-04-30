@@ -12,7 +12,7 @@ public class SoundFXSO : ScriptableObject
   public float pitchMin = 1;
   [Range(-3f, 3f)]
   public float pitchMax = 1;
-  [Range(0f, 2f)]
+  [Range(0f, 3f)]
   public float volume = 1;
   
   [Header("Sound Detection")]

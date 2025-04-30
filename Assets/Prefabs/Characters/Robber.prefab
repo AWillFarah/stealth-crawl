@@ -165,6 +165,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4062684530069505318, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
+      propertyPath: angle
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062684530069505318, guid: fccbbfae14cc346419b0f0b9d6cb21b5, type: 3}
       propertyPath: distance
       value: 5
       objectReference: {fileID: 0}
