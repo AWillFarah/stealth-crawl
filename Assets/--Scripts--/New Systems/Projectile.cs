@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
        SoundFXManager.S.PlaySoundFXClip(sfxVfx, gameObject);
-       print(characterBattleManager);
+       
        // If we dont have a cBM set this will be ignored! Useful for projectiles such as noise makers
        CharacterBattleManager cBMOther = other.gameObject.GetComponent<CharacterBattleManager>();
        if (characterBattleManager != null && cBMOther != null)

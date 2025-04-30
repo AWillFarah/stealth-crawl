@@ -21,7 +21,9 @@ public class MazeRendererRooms : MonoBehaviour
     // or visibile gaps between each cell
     public int CellSize = 1;
     public NavMeshSurface navSurface;
-
+    
+    [Header("Dynamic")]
+    [SerializeField] List<Vector2Int> roomTiles = new List<Vector2Int>();
     [Header("Objects to Spawn")]
     public GameObject exit;
     public GameObject player;
@@ -77,7 +79,14 @@ public class MazeRendererRooms : MonoBehaviour
 
     void SpawnEntities()
     {
-        
+        // This is to avoid getting repeats
+        foreach (Room r in mazeGenerator.rooms)
+        {
+            foreach (Vector2Int t in r.tilesInRoom)
+            {
+                roomTiles.Add(t);
+            } 
+        }
         
         //Room exitRoom = GetRoom();
         Vector2 tile = GetSpawnPosition();
@@ -109,7 +118,21 @@ public class MazeRendererRooms : MonoBehaviour
 
     public Vector2Int GetSpawnPosition()
     {
-        Room r = mazeGenerator.rooms[Random.Range(0, (mazeGenerator.rooms.Count - 1))];
-        return r.tilesInRoom[Random.Range(0, ( r.tilesInRoom.Count - 1))];
+        // In case the list is empty!
+        if (roomTiles.Count == 0)
+        {
+            foreach (Room r in mazeGenerator.rooms)
+            {
+                foreach (Vector2Int t in r.tilesInRoom)
+                {
+                    roomTiles.Add(t);
+                } 
+            }  
+        }
+        
+        Vector2Int tile = roomTiles[Random.Range(0, roomTiles.Count - 1)];
+        // Remove this tile from the list 
+        roomTiles.Remove(tile);
+        return tile;
     }
 }

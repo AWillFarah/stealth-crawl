@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
@@ -73,7 +74,15 @@ public class CharacterBattleManager : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            
+            if (isPlayer)
+            {
+                SceneManager.LoadScene("DungeonPicker");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

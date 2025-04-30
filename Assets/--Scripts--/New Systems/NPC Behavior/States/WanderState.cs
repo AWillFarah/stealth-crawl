@@ -9,6 +9,7 @@ public class WanderState : State
         if (canSeeEnemy())
         {
             thisState = AIState.chasing;
+            chaseState.target = target;
             return chaseState;
         }
 

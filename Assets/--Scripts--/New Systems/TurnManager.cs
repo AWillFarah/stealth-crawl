@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class TurnManager : MonoBehaviour
     {
         S = this;
         QueueTurns();
-        StartTurn(turnOrder[0]);
+        
     }
 
     void Update()
@@ -42,6 +43,10 @@ public class TurnManager : MonoBehaviour
             CharacterMovement characterMovement = temp.GetComponent<CharacterMovement>();
             characterMovement.enabled = false;
             turnOrder.Add(temp.gameObject);
+            if (temp == tempArray.Last())
+            {
+                StartTurn(turnOrder[0]); 
+            }
         } 
         
     }
@@ -53,6 +58,8 @@ public class TurnManager : MonoBehaviour
     
     public void EndTurn()
     {
+        if (turnOrder.Count == 0) return;
+        
         GameObject character = turnOrder[0];
         // I realllllyyy wanna be sure they're in the right spot because ive been getting some rounding errors
         if (character != null)
@@ -67,6 +74,17 @@ public class TurnManager : MonoBehaviour
         turnOrder.RemoveAt(0);
         if (turnOrder.Count <= 0) QueueTurns();
         if(turnOrder[0] == null) QueueTurns();
-        else StartTurn(turnOrder[0]);
+        else if (turnOrder.Count > 0)
+        {
+            if (turnOrder[0] == null)
+            {
+                QueueTurns();
+            }
+
+            if (turnOrder.Count > 0 && turnOrder[0] != null)
+            {
+                StartTurn(turnOrder[0]);
+            }
+        }
     }
 }

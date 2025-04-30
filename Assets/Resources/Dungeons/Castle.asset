@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d031e7837ade87245a210c85b5b8460d, type: 3}
-  m_Name: Test
+  m_Name: Castle
   m_EditorClassIdentifier: 
-  dungeonName: Woods
-  wallMaterial: {fileID: 2100000, guid: 7c17b19c9ab9aad4cbe9f6d32460be9c, type: 2}
-  floorMaterial: {fileID: 2100000, guid: 94fa92db985bc194da03719a4eb77457, type: 2}
+  dungeonName: Castrle
+  wallMaterial: {fileID: 2100000, guid: 8716082bf9fa1fd408f063bcde1c74a0, type: 2}
+  floorMaterial: {fileID: 2100000, guid: 74c73d7e8a31a3d439152a0b612f745b, type: 2}
   dungeonSize: 20
   roomCount: 4
   roomXSizeMin: 3

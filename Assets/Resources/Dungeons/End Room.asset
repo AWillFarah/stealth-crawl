@@ -16,12 +16,14 @@ MonoBehaviour:
   wallMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   floorMaterial: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
   dungeonSize: 20
-  roomCount: 1
+  roomCount: 10
   roomXSizeMin: 1
   roomXSizeMax: 1
   roomYSizeMin: 1
   roomYSizeMax: 1
+  numOfFloors: 40
   numOfNPCS: 0
-  numOfFloors: 1
-  endFloor: 0
   npcs: []
+  numOfItems: 0
+  items: []
+  endFloor: 0

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SoundFXManager : MonoBehaviour
 {
@@ -13,6 +15,10 @@ public class SoundFXManager : MonoBehaviour
     [SerializeField] LayerMask soundLayer;
     private int count;
     public List<GameObject> objects = new List<GameObject>();
+
+
+    private AudioSource aS;
+    private SoundFXSO sfs;
     
     private void Awake()
     {
@@ -28,7 +34,8 @@ public class SoundFXManager : MonoBehaviour
         AudioSource audioSource = Instantiate(soundFXObject, new Vector3(spawnGO.transform.position.x, 0.5f, spawnGO.transform.position.z), 
             Quaternion.identity);
         
-        
+        aS = audioSource;
+        sfs = audioClip;
         //assign the audioClip              
         audioSource.clip = audioClip.sound; 
         
@@ -69,8 +76,8 @@ public class SoundFXManager : MonoBehaviour
                 CharacterBattleManager cBM2 = obj.GetComponentInParent<CharacterBattleManager>();
                 
                 // We dont want team members hearing each other
-                if(cBM1 == null || cBM2 == null) return;
-                if(cBM1.teamNumber != cBM2.teamNumber)
+                if(cBM2 == null) return;
+                if(cBM1 == null || cBM1.teamNumber != cBM2.teamNumber)
                 {
                     State npcState = obj.GetComponentInParent<StateManager>().currentState;
                     npcState.heardNoise(audioSource.transform.position);
@@ -84,42 +91,15 @@ public class SoundFXManager : MonoBehaviour
         
 
         //destroy the clip after it is done playing
-        Destroy(audioSource.gameObject, clipLength);
+        Destroy(audioSource.gameObject, audioSource.clip.length);
         
     }
 
-    public void PlayRandomSoundFXClip(AudioClip[] audioClip, Transform spawnTransform, float volume, bool changePitch)
-    {
-        //asign a random index
-        int rand = Random.Range(0, audioClip.Length);
     
-        //spawn in gameObject
-        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
 
-        //assign the audioClip
-        if (rand > audioClip.Length || rand == 0) return;
-        audioSource.clip = audioClip[rand];
-
-        //assign volume
-        audioSource.volume = volume;
-
-        //assign pitch if set to change
-        if(changePitch == true)
-        {
-            
-        }
-        else
-        {
-          audioSource.pitch = 1;
-        }
-
-        //play sound
-        audioSource.Play();
-
-        //get length of sound FX clip
-        float clipLength = audioSource.clip.length;
-
-        //destriy the clip after it is done playing
-        Destroy(audioSource.gameObject, clipLength);
+    private void OnDrawGizmos()
+    {
+        if(sfs == null || aS == null) return;
+        Gizmos.DrawSphere(aS.transform.position, sfs.noiseRadius);
     }
 }

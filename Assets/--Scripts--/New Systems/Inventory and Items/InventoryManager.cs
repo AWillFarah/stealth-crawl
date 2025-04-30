@@ -54,20 +54,17 @@ public class InventoryManager : MonoBehaviour
     public void AddItem(ItemSO item)
     {
         // If we have too many items then dont add any thing
-        if (INVENTORY.Count < INVENTORY.Capacity)
+        int slotIndex = 0;
+        foreach (InventorySlot slot in slots)
         {
-            int slotIndex = 0;
-            foreach (InventorySlot slot in slots)
+            if (slot.thisItem == null)
             {
-                if (slot.thisItem == null)
-                {
-                    slot.AddItemToInventory(item);
-                    slot.slotNum = slotIndex;
+                slot.AddItemToInventory(item);
+                slot.slotNum = slotIndex;
                 
-                    break;
-                }
-                slotIndex++;
+                break;
             }
+            slotIndex++;
         }
     }
 }

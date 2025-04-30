@@ -32,7 +32,7 @@ public abstract class State : MonoBehaviour
     
     public bool canSeeEnemy()
     {
-        
+        if(lOS.objects == null) return false;
         foreach (GameObject gO in lOS.objects)
         {
             CharacterBattleManager c = gO.GetComponent<CharacterBattleManager>();
@@ -42,6 +42,7 @@ public abstract class State : MonoBehaviour
                 target = gO;
                 return true;
             }
+            
         }
         return false;
         
@@ -59,12 +60,21 @@ public abstract class State : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, (transform.forward) , out RaycastHit hit, 1.41f))
             {
-                CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();
-                if (cBM != null)
-                {
-                    return true; 
-                }
                 
+                CharacterBattleManager cBM = hit.collider.gameObject.GetComponent<CharacterBattleManager>();
+                if (cBM != null )
+                {
+                    
+                    if (hit.transform.gameObject == target)
+                    {
+                        return true; 
+                    }
+                    
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
         return false;
