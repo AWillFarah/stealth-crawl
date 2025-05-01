@@ -16,12 +16,13 @@ MonoBehaviour:
   iconMaxWidth: 128
   projectName: Replace this Project Name
   author: Replace this with your name
-  modificationDate: 2025-04-30
+  modificationDate: 2025-05-01
   sections:
   - heading: 0. What is the link to your project on itch.io?
     text: <i>https://willmsu.itch.io/dungeoncrawler231version</i>
   - heading: 1. What are the controls to your game? How do we play?
-    text: <i>(art, music, etc. Just tell us where you got it, link it here)</i>
+    text: Arrow Keys/WASD to move, Z to attack, X to position yourself, Esc to open
+      menu
   - heading: 2. What creative additions did you make? How can we find them?
     text: <i>(If you don't tell us how to experience them, we could easily miss them.)</i>
   - heading: 3. Any assets used that you didn't create yourself?

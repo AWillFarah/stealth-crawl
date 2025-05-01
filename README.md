@@ -2,7 +2,7 @@
 
 #### Author: *Replace this with your name*
 
-##### Modified: *2025-04-30*
+##### Modified: *2025-05-01*
 
 
 <br>
@@ -18,7 +18,7 @@
 **1. What are the controls to your game? How do we play?**   
 
 > &nbsp;
-><i>(art, music, etc. Just tell us where you got it, link it here)</i>   
+>Arrow Keys/WASD to move, Z to attack, X to position yourself, Esc to open menu   
 > &nbsp;
  
 
