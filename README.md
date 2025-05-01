@@ -2,7 +2,7 @@
 
 #### Author: *Replace this with your name*
 
-##### Modified: *2025-04-11*
+##### Modified: *2025-04-30*
 
 
 <br>
@@ -44,7 +44,7 @@
 > &nbsp;
 ><i>HUGEEEE thank you to Caleb Flosky for giving me his modifications to the maze tutorial code that allows for rooms!    
 >     
-> I went to Jonathan Bergen a lot for advice as wekk     
+> I went to Jonathan Bergen, Lynn Hogen-Esch, Ethan Tobias, and Strider Toll a lot for advice as well     
 > </i>   
 > &nbsp;
  
@@ -67,7 +67,8 @@
 > Sound Manager https://www.youtube.com/watch?v=DU7cgVsU2rM    
 > Input Manager    
 > https://www.youtube.com/watch?v=T8fG0D2_V5M&ab_channel=OneWheelStudio    
->     
+> Scrolling List    
+> https://www.youtube.com/watch?v=rAqyi85IAJ0    
 > </i>   
 > &nbsp;
  
