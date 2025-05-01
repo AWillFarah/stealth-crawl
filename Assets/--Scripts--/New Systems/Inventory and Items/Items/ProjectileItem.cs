@@ -14,7 +14,7 @@ public class ProjectileItem : TemplateItem
         GameObject proj = Instantiate(projectile, spawnPos, spawnTransform.rotation);
         Projectile p = proj.GetComponent<Projectile>();
         if(p != null) p.SetStats(projectileSFXVFX, spriteRenderer.sprite, 25f);
-        disableUI();
+        DisableUI();
         // NOTE! End turn is called in the projectile and not in here! This is to avoid having enemies
         // Move while you fire
         Destroy(gameObject);

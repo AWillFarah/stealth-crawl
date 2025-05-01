@@ -18,6 +18,7 @@ public class WarpItem : TemplateItem
         
         CharacterBattleManager.PLAYER.transform.position = new Vector3(tile.x, 0.5f, tile.y);
         TurnManager.S.EndTurn();
+        DisableUI();
         Destroy(gameObject);
     }
 

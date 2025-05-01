@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c412b8b1e34ecc4408a958e23179350e, type: 3}
-  m_Name: Warp Bomb
+  m_Name: Hypno Wand
   m_EditorClassIdentifier: 
-  itemName: Warp Bomb
-  itemPrefab: {fileID: 7306517606245257862, guid: 6f9cc2b89dcc8294f8bfc790dc3d5f79, type: 3}
-  sprite: {fileID: 1962510958, guid: 8c2becf638275844c85e2d5c7ada9413, type: 3}
+  itemName: Hypno Wand
+  itemPrefab: {fileID: 8197127038391931992, guid: a1ab595ab2b7e3144b589276f868e209, type: 3}
+  sprite: {fileID: 1633374759, guid: 8c2becf638275844c85e2d5c7ada9413, type: 3}
   spriteColor: {r: 1, g: 0, b: 1, a: 1}
   equipmentPrefab: {fileID: 0}

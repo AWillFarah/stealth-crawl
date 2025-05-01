@@ -22,7 +22,7 @@ public class TemplateItem : MonoBehaviour
     {
         CharacterBattleManager.PLAYER.ChangeHealth(-1, false);
         TurnManager.S.EndTurn();
-        disableUI();
+        DisableUI();
         Destroy(gameObject);
     }
     
@@ -54,7 +54,7 @@ public class TemplateItem : MonoBehaviour
         }
     }
 
-    public void disableUI()
+    public void DisableUI()
     {
         UIManager.S.TogglePauseMenu();
         InputManager.TOGGLEACTIONMAP(InputManager.INPUTACTIONS.Player);
