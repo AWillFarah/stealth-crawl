@@ -10,7 +10,7 @@
 **0. What is the link to your project on itch.io?**   
 
 > &nbsp;
-><i>(Just paste the link here.)</i>   
+><i>https://willmsu.itch.io/dungeoncrawler231version</i>   
 > &nbsp;
  
 
@@ -85,7 +85,7 @@
 **8. Is there anything else we should know?**   
 
 > &nbsp;
->*No answer given.*
+>Dungeon Gen Code and Basic movement/pathfinding was programmed BEFORE the start of this project   
 > &nbsp;
  
 

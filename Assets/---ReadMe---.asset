@@ -19,7 +19,7 @@ MonoBehaviour:
   modificationDate: 2025-04-30
   sections:
   - heading: 0. What is the link to your project on itch.io?
-    text: <i>(Just paste the link here.)</i>
+    text: <i>https://willmsu.itch.io/dungeoncrawler231version</i>
   - heading: 1. What are the controls to your game? How do we play?
     text: <i>(art, music, etc. Just tell us where you got it, link it here)</i>
   - heading: 2. What creative additions did you make? How can we find them?
@@ -60,5 +60,6 @@ MonoBehaviour:
     text: <i>(Even if you didn't complete the project, you can still get partial
       credit if you tell us about why it's incomplete.)</i>
   - heading: 8. Is there anything else we should know?
-    text: 
+    text: Dungeon Gen Code and Basic movement/pathfinding was programmed BEFORE the
+      start of this project
   showReadMeEditor: 1
