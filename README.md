@@ -53,7 +53,7 @@
 **5. Did you get help from any AI Code Assistants?**   
 
 > &nbsp;
-><i>(Including things like Chat-GPT, Copilot, etc. Tell us which .cs file to look in for the citation and describe what you learned)</i>   
+><i>No code was written by Chat GPT for this project. However, I did use it occasionally to troubleshoot bugs</i>   
 > &nbsp;
  
 

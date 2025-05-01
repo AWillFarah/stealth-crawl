@@ -33,8 +33,8 @@ MonoBehaviour:
       Lynn Hogen-Esch, Ethan Tobias, and Strider Toll a lot for advice as well\r
       \n</i>"
   - heading: 5. Did you get help from any AI Code Assistants?
-    text: <i>(Including things like Chat-GPT, Copilot, etc. Tell us which .cs file
-      to look in for the citation and describe what you learned)</i>
+    text: <i>No code was written by Chat GPT for this project. However, I did use
+      it occasionally to troubleshoot bugs</i>
   - heading: 6. Did you get help from any online websites, videos, or tutorials?
     text: '<i>State Machine https://www.youtube.com/watch?v=cnpJtheBLLY&t=33s&ab_channel=SebastianGraves
 
